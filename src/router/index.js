@@ -5,6 +5,8 @@ import PlanPage from '@/pages/plan/index'
 import BlogPage from '@/pages/blog/index'
 import CoursePage from '@/pages/course/index'
 import SectionPage from '@/pages/section/index'
+import HomeworkPage from '@/pages/homework/index'
+
 
 
 import NotFoundPage from '@/pages/common/404'
@@ -42,6 +44,11 @@ export default new Router({
             path: '/blog/:id',
             name: 'blog_page',
             component: BlogPage
+        },
+        {
+            path: '/homework/:id',
+            name: 'homework_page',
+            component: HomeworkPage
         }
     ]
 })

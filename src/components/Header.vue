@@ -2,7 +2,9 @@
     <header>
         <div class="container">
             <div class="hd-logo">
-                <img src="./../assets/images/aitschool-M1.svg" alt="logo">
+                <a href="/">
+                    <img src="./../assets/images/aitschool-M1.svg" alt="logo">
+                </a>
             </div>
             <div class="login-contain">
                 <a href="https://github.com/login/oauth/authorize?client_id=" target="_self">
