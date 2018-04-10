@@ -39,7 +39,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <p class="link">{{chapter.homework}}</p>
+                                            <a class="link" :href="'/homework/'+ chapter.id">{{chapter.homework}}</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -322,7 +322,6 @@ export default {
                                     text-decoration: none;
                                     color: #02b3e4;
                                     letter-spacing: 1px;
-                                    text-transform: uppercase;
                                 }
                             }
                         }

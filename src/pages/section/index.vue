@@ -4,21 +4,21 @@
             <div class="navigation-contain">
                 <h3 id="course_id">{{courseInfo.title}}</h3>
                 <ul class="chapter_list">
-                    <li class="chapter_item" v-for="chapter in courseInfo.chapters">
-                        <p class="chapter-title">{{chapter.title}}</p>
+                    <li class="chapter_item" v-for="chapter in courseInfo.chapters" :class="[(chapter.id == chapter_id) ? 'chapter_active' : '']">
+                        <p :class="['chapter-title']" >{{chapter.title}}</p>
                         <ul class="section_list">
-                            <li v-for="section in chapter.sections">
+                            <li v-for="section in chapter.sections" :class="[(section.id == section_id) && (chapter.id == chapter_id) ? 'section_active' : '']">
                                 <a href="javascript:;">{{section.title}}</a>
                             </li>
                             <li>
-                                <a href="javascript:;">作业 {{chapter.homework}}</a>
+                                <a class="link" :href="'/homework/'+ chapter.id">作业 {{chapter.homework}}</a>
                             </li>
                         </ul>
                     </li>
                 </ul>
             </div>
             <div class="section-contain">
-                <h4>浏览器历史 </h4>
+                <h4>浏览器历史 {{chapter_id}} {{section_id}}</h4>
                 <div class="text-content">
                     <Marked :content="sectionInfo.content"></Marked>
                 </div>
@@ -33,6 +33,9 @@ import mock from '@/pages/blog/mock_data.js'
 
 export default {
     name: 'section_page',
+    created () {
+        this.fetchData()
+    },
     data () {
         return {
             courseInfo:{
@@ -98,6 +101,17 @@ export default {
             }
         }
     },
+    watch: {
+        '$route': 'fetchData'
+    },
+    methods: {
+        fetchData () {
+            let params = this.$route.params;
+            this.course_id = params.id;
+            this.chapter_id = params.chapter;
+            this.section_id = params.section;
+        }
+    },
     components: {
         Marked
     }
@@ -140,7 +154,7 @@ export default {
 
             &.chapter_active{
                 .chapter-title{
-                    color: #E25E5E;
+                    color: #ff5483;
                     font-weight: 600;
                 }
                 .section_list{
@@ -207,6 +221,12 @@ export default {
                     color: #02b3e4;
                 }
             }
+        }
+
+        .link{
+            font-weight: 600;
+            text-decoration: none;
+            color: #333;
         }
     }
 }

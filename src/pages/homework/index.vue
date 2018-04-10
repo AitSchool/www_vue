@@ -31,13 +31,13 @@
                                     <td><a href="javascript:;" class="link">Github</a></td>
                                     <td>{{subLog.comment.time}}</td>
                                     <td>{{subLog.comment.teacher}}</td>
-                                    <td>{{subLog.comment.content ? "查看点评" : ""}}</td>
+                                    <td class="link" @click="commentEvent(subLog.comment.content)">{{subLog.comment.content ? "查看点评" : ""}}</td>
                                     <td>{{subLog.comment.score}}</td>
                                 </tr>
                             </tbody>
                         </table>
                         <div class="btn-container" v-if="homework.subLog.length < 3">
-                            <a href="javascript:;">提交作业</a>
+                            <a href="javascript:;" @click="submitEvent">提交作业</a>
                         </div>
                     </div>
                 </div>
@@ -103,6 +103,18 @@ export default {
             }]
         }
     },
+    methods: {
+        submitEvent:function(e){
+            var link = prompt("请输入 Github 仓库的作业地址URI","")
+            if(!link || !link.trim()){
+                alert('作业地址不能为空！')
+                return
+            }
+        },
+        commentEvent:function(data){
+            data && alert(data)
+        }
+    },
     components: {
         Marked
     }
@@ -149,8 +161,6 @@ export default {
         }
 
         .link{
-            display: block;
-            height: 100%;
             color: #02b3e4;
         }
 

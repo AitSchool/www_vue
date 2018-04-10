@@ -112,7 +112,7 @@ export default {
                 opacity: 0;
             }
 
-            &:hover{
+            // &:hover{
                 .desc,.link{
                     opacity: 1;
                 }
@@ -120,20 +120,20 @@ export default {
                 .title{
                     background: #fff;
                 }
-            }
+            // }
 
             &:nth-child(1){
                 background: url('./../../assets/images/3jk_tmp_2.jpg');
                 background-size: auto 420px;
 
-                &:hover{
+                // &:hover{
                     .mask{
                         background: rgba(250,234,103,.9);
                     }
                     .title,.desc,.link{
                         color: #333;
                     }
-                }
+                // }
             }
 
 
@@ -142,30 +142,28 @@ export default {
                 background-size: auto 420px;
                 background-position: center -20px;
 
-                &:hover{
+                // &:hover{
                     .mask{
                         background: rgba(85,182,218,.9);
                     }
                     .title{
                         color: rgba(85,182,218,.9);
                     }
-                }
+                // }
             }
 
             &:nth-child(3){
                 background: url('./../../assets/images/3jk_tmp_3.jpg');
                 background-size: auto 420px;
                 background-position: -280px 0;
-                &:hover{
+                // &:hover{
                     .mask{
                         background: rgba(221,94,110,.9);
                     }
                     .title{
                         color: rgba(221,94,110,.9);
                     }
-
-                }
-
+                // }
             }
 
         }

@@ -41,7 +41,7 @@ export default {
         top: -150px;
         left: 0;
         width: 60px;
-        animation: hero-octonaut 2s alternate ease-in-out infinite;
+        // animation: hero-octonaut 2s alternate ease-in-out infinite;
         will-change: transform;
         -webkit-user-select: none;
         user-select: none;
