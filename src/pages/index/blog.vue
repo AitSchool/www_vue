@@ -4,20 +4,17 @@
             <ul>
                 <li>
                     <a href="/blog/1" target="_blank">
-                    <img src="" >
-                    <h3 class="title">孵化计划</h3>
+                        <h3 class="title">兴趣 · 孵化计划</h3>
                     </a>
                 </li>
                 <li>
                     <a href="/blog/1" target="_blank">
-                    <img src="">
-                    <h3 class="title">新蕾计划</h3>
+                        <h3 class="title">职业 · 新蕾计划</h3>
                     </a>
                 </li>
                 <li>
                     <a href="/blog/1" target="_blank">
-                    <img src="">
-                    <h3 class="title">破壳计划</h3>
+                        <h3 class="title">暑期 · 破壳计划</h3>
                     </a>
                 </li>
             </ul>
@@ -56,23 +53,43 @@ export default {
         transition: box-shadow 0.3s ease;
         margin-right: 15px;
 
+        &:nth-child(1){
+            background: url('./../../assets/images/etus-banner.jpg');
+            background-size: cover;
+            background-position: 0 -30px;
+        }
+
+
+        &:nth-child(2){
+            background: url('./../../assets/images/3jk_tmp_1.jpg');
+            background-size: cover;
+            background-position: 0 -32px;
+        }
+
+
+        &:nth-child(3){
+            background: url('./../../assets/images/3jk_tmp_3.jpg');
+            background-size: auto 120px;
+            // background-position: -280px 0;
+        }
+
         &:hover{
             box-shadow: 2px 4px 8px 0px rgba(46,61,73,0.2);
+            a{
+                background: transparent;
+            }
         }
 
         &:nth-child(3n){
             margin-right: 0;
         }
 
-        a{
+        >a{
             display: block;
             width: 100%;
-            height: 100%;
-        }
-
-        img{
-            display: block;
             height: 120px;
+            background: rgba(0,0,0,.2);
+            transition: all .2s ease;
         }
 
         .title {

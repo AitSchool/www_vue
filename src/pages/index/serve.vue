@@ -54,8 +54,7 @@
                         认证当前技术水平，获取专业技能证书
                     </p>
                     <div class="btn-container">
-                    <a href="javascript:;" target="_blank">了解更多</a>
-                    <a class="apply" href="javascript:;" target="_blank">免费试听</a>
+                    <a href="https://www.prodegree.com" target="_blank">了解更多</a>
                     </div>
                 </li>
 
@@ -69,8 +68,7 @@
                         企业级人才资源服务平台
                     </p>
                     <div class="btn-container">
-                    <a href="javascript:;" target="_blank">了解更多</a>
-                    <a class="apply" href="javascript:;" target="_blank">免费试听</a>
+                    <a href="https://www.toppro.io" target="_blank">了解更多</a>
                     </div>
                 </li>
 
@@ -85,12 +83,8 @@
                     </p>
                     <div class="btn-container">
                     <a href="javascript:;" target="_blank">了解更多</a>
-                    <a class="apply" href="javascript:;" target="_blank">免费试听</a>
                     </div>
                 </li>
-
-
-
             </ul>
         </div>
     </div>

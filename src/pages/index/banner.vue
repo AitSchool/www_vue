@@ -3,9 +3,14 @@
         <div class="mask" style="height:100%;background:rgba(0,0,0,.5)">
             <div class="container">
                 <div class="banner-info">
-                    <h1>AitSchool -- 技术成就梦想之美</h1>
-                    <h2>互联网核<span class="opacity">心</span>技能进阶</h2>
-                    <p>相比于“获取知识”，我们更关注你切实获得<span class="yellow">“能力提升”</span></p>
+                    <h1 class="title">AitSchool -- 技术成就梦想之美</h1>
+                    <h2 class="sub-title">互联网核<span class="opacity">心</span>技能进阶</h2>
+                    <p class="desc">相比于“获取知识”，我们更关注你切实获得<span class="yellow">“能力提升”</span></p>
+                    <div class="banner-image">
+                        <a href="javascript:;">
+                            <img src="./../../assets/images/learn_promotion.png">
+                        </a>
+                    </div>
                 </div>
                 <Atom :size="80" class="atom-logo"></Atom>
             </div>
@@ -48,7 +53,7 @@ export default {
         .banner-info{
             padding-top: 70px;
             
-            h1{
+            .title{
                 width: 365px;
                 margin: 0 auto;
                 line-height: 50px;
@@ -63,7 +68,7 @@ export default {
                 transform: scale(.8);
             }
 
-            h2{
+            .sub-title{
                 margin-top: 38px;
                 font-size: 46px;
                 font-weight: 300;
@@ -77,7 +82,7 @@ export default {
                 }
             }
 
-            p{
+            .desc{
                 margin-top: 40px;
                 font-size: 18px;
                 color: #fff;
@@ -91,6 +96,10 @@ export default {
                 .red{
                     color: #8a3c3c;
                 }
+            }
+
+            .banner-image{
+                margin-top: 30px;
             }
         }
     }

@@ -38,7 +38,7 @@ export default {
     width: 150px;
     height: 150px;
     background: url('./../assets/images/logo-circles/hero-logo-circles-0.svg') no-repeat center;
-    background-size: 50% 50%;
+    background-size: 40% 40%;
 
 
     .hero-logo-circle{
@@ -51,34 +51,34 @@ export default {
         will-change: transform;
 
         &:nth-child(1) {
-            animation-duration: 30s;
+            animation-duration: 3s;
         }
         &:nth-child(2) {
-            animation-duration: 40s;
+            animation-duration: 4s;
         }
         &:nth-child(3) {
-            animation-duration: 50s;
+            animation-duration: 5s;
         }
         &:nth-child(4) {
-            animation-duration: 60s;
+            animation-duration: 6s;
         }
         &:nth-child(5) {
-            animation-duration: 70s;
+            animation-duration: 7s;
         }
         &:nth-child(6) {
-            animation-duration: 80s;
+            animation-duration: 8s;
         }
         &:nth-child(7) {
-            animation-duration: 90s;
+            animation-duration: 9s;
         }
         &:nth-child(8) {
-            animation-duration: 100s;
+            animation-duration: 10s;
         }
         &:nth-child(9) {
-            animation-duration: 110s;
+            animation-duration: 11s;
         }
         &:nth-child(10) {
-            animation-duration: 120s;
+            animation-duration: 12s;
         }
 
     }
