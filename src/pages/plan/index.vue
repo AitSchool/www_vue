@@ -1,39 +1,36 @@
 <template>
-    <div class="plan_page">
+    <div class="plan_page" v-if="plan.name">
         <div class="container">
             <div class="intro-section">
-                <h2>{{planInfo.title}}</h2>
+                <h2>{{plan.name}}</h2>
                 <div class="plan-info">
                     <div class="plan-image">
-                        <img :src="planInfo.imageUrl" :alt="planInfo.title">
+                        <img :src="plan.image_path" :alt="plan.name">
                     </div>
                     <div class="content">
-                        <div class="plan-desc">{{planInfo.description}}</div>
+                        <div class="plan-desc">{{plan.description}}</div>
 
-                        <div class="line" v-if="planInfo.status === 2">
-                            <div class="hight-line" :style="'width:'+ planInfo.progress">
-                                <span class="block">{{planInfo.progress}}</span>
+                        <div class="line" v-if="false">
+                            <div class="hight-line">
+                                <span class="block"></span>
                             </div>
                         </div>
                     
                         <a v-if="!is_buy" href="javascript:;" class="join-btn">加入计划，马上学习</a>
-
+                        
                     </div>
                 </div>
             </div>
             <div class="task-section">
-                <div class="task-item"  v-for="task in taskInfo" :class="task.status === 0 ? 'lock' : 'pass'">
-                    <a v-if="task.status === 0" href="/course/1" target="_blank"></a>
-                    <a v-else-if="task.status === 1" href="/course/1" target="_blank"></a>
-                    <a v-else="task.status === 2"  href="/course/1" target="_blank"></a>
-
-                    <h4>{{task.title}}</h4>
-                    <p class="title">{{task.description}}</p>
+                <div class="task-item"  v-for="course in plan.courses" :class="course.status === 1 ? 'lock' : 'pass'">
+                    <router-link class="link" :to="{ name:'course_page',params: { id: course.id}}" ></router-link>
+                    <h4>{{course.name}}</h4>
+                    <p class="title">{{course.short_name}}</p>
                     <div class="score-contain">
-                        <p class="score" v-if="task.status !== 0">{{task.score ? task.score : '?'}}</p>
+                        <p class="score">?</p>
                     </div>
-                    <div class="start-gray" v-if="task.status !== 0">
-                        <div class="start-yellow" :style="'width:'+ task.progress"></div>
+                    <div class="start-gray">
+                        <div class="start-yellow" :style="'width:0%;'"></div>
                     </div>
                 </div>
             </div>
@@ -57,10 +54,11 @@ export default {
     },
     data () {
         return {
+            plan:{},
             is_buy: true,
             planInfo:{
                 title: 'Web前端工程师',
-                imageUrl: 'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170704/4cdffb64-3d45-49f3-84c3-60f2349a25c2.png',
+                image_path: 'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170704/4cdffb64-3d45-49f3-84c3-60f2349a25c2.png',
                 description: 'Web前端工程师是目前最火的互联网职业，它能充分理解项目需求和设计需求，并与设计师、后端工程师紧密合作，产出高质量的产品前端层，为用户呈现最好的界面交互体验。',
                 status: 0, // 0 没报名，1 已报名没付款，2 已报名并付款
                 progress: "20%", // 百分数或者 null，百分数更具完成计划下任务的百分数来定
@@ -138,23 +136,17 @@ export default {
     },
     methods: {
         getPlanInfo:function(id){
-            console.log(id)
-            // let plans = storage.get('plans');
-            // if(plans){
-            //     this.plans = plans
-            //     return
-            // }
-
             axios({
                 method: 'get',
                 url: `${API.plan}/${id}`,
             })
             .then( (response)=> {
                 let plan = response.data;
+                this.plan = plan
                 console.log(plan)
             })
             .catch( (error)=> {
-                console.log(error)
+                this.$router.push('/')
             });
         },
         hasBuy:function(id){
@@ -341,7 +333,7 @@ export default {
                 margin-top: 25px;
             }
 
-            >a{
+            .link{
                 position: absolute;
                 width: 100%;
                 height: 100%;

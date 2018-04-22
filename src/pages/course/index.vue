@@ -1,45 +1,44 @@
 <template>
-    <div class="course_page">
-        <Banner></Banner>
+    <div class="course_page" v-if="course.name">
         <div class="container">
             <div class="course-section">
                 <div class="contain">
                     <div class="contain-header">
                         <div class="header-content">
-                            <i class="tips">Web前端工程师</i>
-                            <h4>{{courseInfo.title}}</h4>
-                            <p class="desc">{{courseInfo.description}}</p>
+                            <i class="tips">{{course.short_name}}</i>
+                            <h4>{{course.name}}</h4>
+                            <p class="desc">{{course.description}}</p>
                             <div class="details">
                                 <p class="text">学习时长</p>
-                                <p class="time">{{courseInfo.duration}}</p>
+                                <p class="time">{{course.duration}}</p>
                             </div>
                         </div>
                         <div class="header-image">
-                            <img :src="courseInfo.imageUrl">
+                            <img :src="course.image_path">
                         </div>
                     </div>
                     <div class="contain-main">
                         <div class="main-aside">
                             <img src="./../../assets/images/book.svg">
                             <p class="tips">实战项目</p>
-                            <p class="small">{{courseInfo.task}}</p>
+                            <p class="small" v-for="task in course.tasks">{{task.name}}</p>
                         </div>
                         <div class="main-content">
                             <h4>先备知识</h4>
-                            <p class="desc">{{courseInfo.ready}}</p>
+                            <p class="desc">{{course.tips}}</p>
                             <div class="content-part">
                                 <ul>
-                                    <li v-for="chapter in courseInfo.chapters" >
+                                    <li v-for="chapter in course.chapters" >
                                         <div class="part">
-                                            <h5>{{chapter.title}}</h5>
+                                            <h5 :data-id="chapter.id">{{chapter.name}}</h5>
                                             <div class="desc">
                                                 <ul>
                                                     <li v-for="section in chapter.sections">
-                                                        <a :href="'/course/' + courseInfo.id + '/'  + chapter.id + '/' + section.id">{{section.title}}</a>
+                                                        <a :href="'/course/' + courseInfo.id + '/'  + chapter.id + '/' + section.id">{{section.name}}</a>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <a class="link" :href="'/homework/'+ chapter.id">{{chapter.homework}}</a>
+                                            <p class="link" v-for="homework in chapter.homeworks">{{homework.name}}</p>
                                         </div>
                                     </li>
                                 </ul>
@@ -66,6 +65,8 @@ export default {
     },
     data () {
         return {
+            can_learn:false,
+            course:{},
             courseInfo:{
                 id: 11,
                 status: 0, //0 不能学习；1 已下单但没付款，不能学习；2 已付款或者免费，可以学习
@@ -132,10 +133,12 @@ export default {
             })
             .then( (response)=> {
                 let course = response.data;
-                console.log(course)
+                console.log(course);
+                this.course = course;
             })
             .catch( (error)=> {
                 console.log(error)
+                this.$router.push('/')
             });
         },
         hasBuy:function(id){
@@ -148,8 +151,8 @@ export default {
                 }
             })
             .then( (response)=> {
-                let is_buy = response.data;
-                console.log(is_buy)
+                let can_learn = response.data.can_learn;
+                this.can_learn = can_learn;
             })
             .catch( (error)=> {
                 console.log(error)
