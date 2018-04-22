@@ -7,7 +7,10 @@
                 </a>
             </div>
             <div class="login-contain">
-                <a href="https://github.com/login/oauth/authorize?client_id=" target="_self">
+                <a v-if="userInfo.name">
+                    <img class="avatar" :src="userInfo.github_avatar_url" alt="avatar">
+                </a>
+                <a v-else :href="github_login_url">
                     <img class="avatar" src="./../assets/images/github_default_avatar.png" alt="avatar">
                 </a>
             </div>
@@ -18,10 +21,18 @@
 <script>
 export default {
     name: 'Header',
+    created () {
+
+    },
+    props: {
+        userInfo: {
+            type: Object,
+            default: {}
+        },
+    },
     data () {
         return {
-            github_login_url: 'https://github.com/login/oauth/authorize?client_id=',
-            default_avatar: ''
+            github_login_url: 'https://github.com/login/oauth/authorize?client_id=0afe04184c7f3628940d',
         }
     }
 }
@@ -51,7 +62,7 @@ export default {
                 top: 20px;
                 right: 0;
                 height: 60px;
-                width: 120px;
+                width: 60px;
                 text-align: right;
                 >a{
                     display: block;

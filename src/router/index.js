@@ -6,9 +6,7 @@ import BlogPage from '@/pages/blog/index'
 import CoursePage from '@/pages/course/index'
 import SectionPage from '@/pages/section/index'
 import HomeworkPage from '@/pages/homework/index'
-
-
-
+import LoginPage from '@/pages/login/index'
 import NotFoundPage from '@/pages/common/404'
 
 Vue.use(Router)
@@ -19,6 +17,11 @@ export default new Router({
             path: '*',
             name: 'notfound_page',
             component: NotFoundPage
+        },
+        {
+            path: '/login/oauth/callback/github',
+            name: 'login_page',
+            component: LoginPage
         },
         {
             path: '/',

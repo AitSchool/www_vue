@@ -8,9 +8,7 @@ import '@/assets/less/common.less'
 import '@/assets/vendor/marked/hightlight.less'
 import '@/assets/vendor/marked/content-style.less'
 
-
-Vue.config.productionTip = false
-
+import './filter';
 /* eslint-disable no-new */
 new Vue({
     el: '#app',

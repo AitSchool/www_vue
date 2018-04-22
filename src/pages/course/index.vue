@@ -53,9 +53,17 @@
 </template>
 
 <script>
+import axios from 'axios';
+import storage from '@/utils/storage.js';
+import API from '@/config/api.js';
 import Banner from './../index/banner'
 export default {
     name: 'course_page',
+    created () {
+        let id = this.$route.params.id;
+        this.getCourse(id);
+        this.hasBuy(id);
+    },
     data () {
         return {
             courseInfo:{
@@ -115,6 +123,38 @@ export default {
                 }]
             }
         }
+    },
+    methods: {
+        getCourse:function(id){
+            axios({
+                method: 'get',
+                url: `${API.course}/${id}`,
+            })
+            .then( (response)=> {
+                let course = response.data;
+                console.log(course)
+            })
+            .catch( (error)=> {
+                console.log(error)
+            });
+        },
+        hasBuy:function(id){
+            let token = storage.get('token')
+            token && axios({
+                method: 'get',
+                url: `${API.course}/${id}/buy-status`,
+                headers: {
+                    Authorization:`Bearer ${token}`
+                }
+            })
+            .then( (response)=> {
+                let is_buy = response.data;
+                console.log(is_buy)
+            })
+            .catch( (error)=> {
+                console.log(error)
+            });
+        },
     },
     components: {
         Banner

@@ -16,17 +16,16 @@
                             </div>
                         </div>
                     
-                        <a v-if="planInfo.status === 0" href="javascript:;" class="join-btn">加入计划，马上学习</a>
-                        <a v-if="planInfo.status === 1" href="javascript:;" class="join-btn">去付款</a>
+                        <a v-if="!is_buy" href="javascript:;" class="join-btn">加入计划，马上学习</a>
 
                     </div>
                 </div>
             </div>
             <div class="task-section">
                 <div class="task-item"  v-for="task in taskInfo" :class="task.status === 0 ? 'lock' : 'pass'">
-                    <a v-if="task.status === 0" href="/course/2" target="_blank"></a>
-                    <a v-else-if="task.status === 1" href="/course/2" target="_blank"></a>
-                    <a v-else="task.status === 2"  href="/course/2" target="_blank"></a>
+                    <a v-if="task.status === 0" href="/course/1" target="_blank"></a>
+                    <a v-else-if="task.status === 1" href="/course/1" target="_blank"></a>
+                    <a v-else="task.status === 2"  href="/course/1" target="_blank"></a>
 
                     <h4>{{task.title}}</h4>
                     <p class="title">{{task.description}}</p>
@@ -43,13 +42,22 @@
 </template>
 
 <script>
-
+import axios from 'axios';
+import storage from '@/utils/storage.js';
+import API from '@/config/api.js';
 
 
 export default {
     name: 'plan_page',
+    created () {
+        let id = this.$route.params.id;
+        this.getPlanInfo(id);
+        this.hasBuy(id);
+        this.getMyCourse(id);
+    },
     data () {
         return {
+            is_buy: true,
             planInfo:{
                 title: 'Web前端工程师',
                 imageUrl: 'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170704/4cdffb64-3d45-49f3-84c3-60f2349a25c2.png',
@@ -126,6 +134,63 @@ export default {
                 status: 0, 
                 progress: null,
             }]
+        }
+    },
+    methods: {
+        getPlanInfo:function(id){
+            console.log(id)
+            // let plans = storage.get('plans');
+            // if(plans){
+            //     this.plans = plans
+            //     return
+            // }
+
+            axios({
+                method: 'get',
+                url: `${API.plan}/${id}`,
+            })
+            .then( (response)=> {
+                let plan = response.data;
+                console.log(plan)
+            })
+            .catch( (error)=> {
+                console.log(error)
+            });
+        },
+        hasBuy:function(id){
+            let token = storage.get('token')
+            token && axios({
+                method: 'get',
+                url: `${API.plan}/my?plan_id=${id}`,
+                headers: {
+                    Authorization:`Bearer ${token}`
+                }
+            })
+            .then( (response)=> {
+                let is_buy = response.data.is_buy;
+                this.is_buy = is_buy;
+            })
+            .catch( (error)=> {
+                console.log(error)
+            });
+        },
+        getMyCourse:function(id){
+            let token = storage.get('token')
+            token && axios({
+                method: 'get',
+                url: `${API.plan}/${id}/my-course`,
+                headers: {
+                    Authorization:`Bearer ${token}`
+                }
+            })
+            .then( (response)=> {
+                let mycourse = response.data;
+                this.mycourse = mycourse;
+                console.log(mycourse)
+            })
+            .catch( (error)=> {
+                console.log(error)
+            });
         }
     },
     components: {
