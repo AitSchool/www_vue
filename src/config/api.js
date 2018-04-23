@@ -6,6 +6,9 @@ const API = {
     GithubCallbackURL: '/login/oauth/callback/github',
     plan: HOST + '/course/plans',
     course: HOST + '/course/courses',
+    section: HOST + '/course/sections',
+    homework: HOST + '/course/homeworks',
+    blog: HOST + '/blog'
 }
 
 export default API

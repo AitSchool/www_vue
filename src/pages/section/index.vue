@@ -1,26 +1,29 @@
 <template>
     <div class="section_page">
         <div class="container">
-            <div class="navigation-contain">
-                <h3 id="course_id">{{courseInfo.title}}</h3>
+            <div class="navigation-contain" v-if="course.name">
+                <h3 id="course_id">{{course.name}}</h3>
                 <ul class="chapter_list">
-                    <li class="chapter_item" v-for="chapter in courseInfo.chapters" :class="[(chapter.id == chapter_id) ? 'chapter_active' : '']">
-                        <p :class="['chapter-title']" >{{chapter.title}}</p>
+                    <li class="chapter_item" v-for="chapter in course.chapters" :class="[(chapter.id == chapter_id) ? 'chapter_active' : '']">
+                        <p :class="['chapter-title']" >{{chapter.name}}</p>
                         <ul class="section_list">
                             <li v-for="section in chapter.sections" :class="[(section.id == section_id) && (chapter.id == chapter_id) ? 'section_active' : '']">
-                                <a href="javascript:;">{{section.title}}</a>
+                                <router-link :to="{ name:'section_page',params: { 
+                                    id: course.id, 
+                                    chapter: chapter.id, 
+                                    section: section.id }}" >{{section.name}}</router-link>
                             </li>
                             <li>
-                                <a class="link" :href="'/homework/'+ chapter.id">作业 {{chapter.homework}}</a>
+                                <a class="link" :href="'/homework/'+ chapter.id" v-for="homework in chapter.homeworks">{{homework.name}}</a>
                             </li>
                         </ul>
                     </li>
                 </ul>
             </div>
-            <div class="section-contain">
-                <h4>浏览器历史 {{chapter_id}} {{section_id}}</h4>
+            <div class="section-contain" v-if="section.name">
+                <!-- <h4>{{section.name}}</h4> -->
                 <div class="text-content">
-                    <Marked :content="sectionInfo.content"></Marked>
+                    <Marked :content="section.content || '暂无内容'"></Marked>
                 </div>
             </div>
         </div>
@@ -28,6 +31,10 @@
 </template>
 
 <script>
+import axios from 'axios';
+import storage from '@/utils/storage.js';
+import API from '@/config/api.js';
+
 import Marked from '@/components/marked.vue'
 import mock from '@/pages/blog/mock_data.js'
 
@@ -38,6 +45,14 @@ export default {
     },
     data () {
         return {
+            section: {
+                naem:'',
+                content:'',
+            },
+            course: {},
+            course_id: 0,
+            chapter_id: 0,
+            section_id: 0,
             courseInfo:{
                 id: 11,
                 status: 0, //0 不能学习；1 已下单但没付款，不能学习；2 已付款或者免费，可以学习
@@ -110,6 +125,42 @@ export default {
             this.course_id = params.id;
             this.chapter_id = params.chapter;
             this.section_id = params.section;
+            this.getSection(params.section)
+            this.getCourse(params.id)
+        },
+        getCourse:function(id){
+            let token = storage.get('token')
+            token && axios({
+                method: 'get',
+                url: `${API.course}/${id}`,
+            })
+            .then( (response)=> {
+                let course = response.data;
+                console.log(course);
+                this.course = course;
+            })
+            .catch( (error)=> {
+                console.log(error)
+                this.$router.back();
+                // this.$router.push('/')
+            });
+        },
+        getSection:function(id){
+            let token = storage.get('token')
+            token && axios({
+                method: 'get',
+                url: `${API.section}/${id}`,
+                headers: {
+                    Authorization:`Bearer ${token}`
+                }
+            })
+            .then( (response)=> {
+                this.section = response.data;
+                console.log(this.section)
+            })
+            .catch( (error)=> {
+                this.$router.back();
+            });
         }
     },
     components: {

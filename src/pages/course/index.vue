@@ -34,7 +34,11 @@
                                             <div class="desc">
                                                 <ul>
                                                     <li v-for="section in chapter.sections">
-                                                        <a :href="'/course/' + courseInfo.id + '/'  + chapter.id + '/' + section.id">{{section.name}}</a>
+                                                        <span v-if="!can_learn">{{section.name}}</span>
+                                                        <router-link v-else :to="{ name:'section_page',params: { 
+                                                            id: course.id, 
+                                                            chapter: chapter.id, 
+                                                            section: section.id }}" >{{section.name}}</router-link>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -55,7 +59,7 @@
 import axios from 'axios';
 import storage from '@/utils/storage.js';
 import API from '@/config/api.js';
-import Banner from './../index/banner'
+
 export default {
     name: 'course_page',
     created () {
@@ -153,6 +157,7 @@ export default {
             .then( (response)=> {
                 let can_learn = response.data.can_learn;
                 this.can_learn = can_learn;
+                console.log(can_learn)
             })
             .catch( (error)=> {
                 console.log(error)
@@ -160,7 +165,7 @@ export default {
         },
     },
     components: {
-        Banner
+
     }
 }
 </script>

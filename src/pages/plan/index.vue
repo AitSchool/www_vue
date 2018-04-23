@@ -22,12 +22,13 @@
                 </div>
             </div>
             <div class="task-section">
-                <div class="task-item"  v-for="course in plan.courses" :class="course.status === 1 ? 'lock' : 'pass'">
-                    <router-link class="link" :to="{ name:'course_page',params: { id: course.id}}" ></router-link>
+                <div class="task-item"  v-for="course in plan.courses" :class="course.status === 2 ? 'lock' : 'pass'">
+                    <router-link v-if="course.status === 1" class="link" :to="{ name:'course_page',params: { id: course.id}}" ></router-link>
+
                     <h4>{{course.name}}</h4>
                     <p class="title">{{course.short_name}}</p>
                     <div class="score-contain">
-                        <p class="score">?</p>
+                        <p class="score" v-if="course.status === 1">?</p>
                     </div>
                     <div class="start-gray">
                         <div class="start-yellow" :style="'width:0%;'"></div>
@@ -324,6 +325,8 @@ export default {
             background: #fff;
             margin-right: 25px;
             vertical-align: top;
+            transition: box-shadow 0.3s ease;
+            box-shadow: 8px 10px 20px 0px rgba(46,61,73,0.15);
 
             &:nth-child(5n){
                 margin-right: 0;
@@ -339,9 +342,6 @@ export default {
                 height: 100%;
                 top: 0;
                 left: 0;
-                transition: box-shadow 0.3s ease;
-                box-shadow: 8px 10px 20px 0px rgba(46,61,73,0.15);
-
             }
 
             h4{

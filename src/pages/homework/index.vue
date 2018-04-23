@@ -1,13 +1,13 @@
 <template>
     <div class="homework_page">
         <div class="container">
-            <div v-for="homework in homeworkInfo">
-                <div class="overview-section">
-                    <p class="title">{{homework.title}}</p>
+
+                <div class="overview-section" v-if="homework.name">
+                    <p class="title">{{homework.name}}</p>
                     <div class="description">
-                        <Marked :content="homework.description"></Marked>
+                        <Marked :content="homework.content"></Marked>
                     </div>
-                    <div class="sub-section">
+                    <div class="sub-section" v-if="false">
                         <p class="title">提交记录</p>
                         <table border="1">
                             <tbody>
@@ -41,17 +41,29 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
         </div>
     </div>
 </template>
 <script type="text/javascript">
 import Marked from '@/components/marked.vue'
+import axios from 'axios';
+import storage from '@/utils/storage.js';
+import API from '@/config/api.js';
 
 export default {
     name: 'homework_page',
+    created() {
+        let params = this.$route.params;
+        let id = params.id;
+        this.getHomework(id);
+    },
     data () {
         return {
+            homework:{
+                name:'',
+                content:''
+            },
             homeworkInfo: [{
                 title: '完成一个个人博客',
                 description: "模仿作业：仿照【讲解视频】中老师的代码演示，配置好开发环境，开发基础版的百度首页，能够基本符合视觉上的要求，能够让整块在页面大致垂直居中，页面的点击全部为真实点击，按钮样式不做太多要求，大致符合即可，并不要求CSS主要在于HTML及其标签的使用（不要求使用CSS，因此可仿照老师视频中的演示100%抄写对应的CSS代码，下个任务会讲到炫酷的CSS部分的知识）！",
@@ -113,6 +125,23 @@ export default {
         },
         commentEvent:function(data){
             data && alert(data)
+        },
+        getHomework:function(id){
+            let token = storage.get('token')
+            token && axios({
+                method: 'get',
+                url: `${API.homework}/${id}`,
+                headers: {
+                    Authorization:`Bearer ${token}`
+                }
+            })
+            .then( (response)=> {
+                this.homework = response.data;
+                console.log(this.homework)
+            })
+            .catch( (error)=> {
+                console.log(error)
+            });
         }
     },
     components: {
