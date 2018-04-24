@@ -1,0 +1,41 @@
+不需要登录
+
+GET course/plans
+GET course/plans/{id}
+
+GET course/courses/{id}
+
+/blog/{id}
+-----------------------
+
+post http://api.aitschool.com/auth/oauth2
+name code
+nam:github
+
+
+get http://api.aitschool.com/auth/user
+
+需要登录
+
+GET course/plans/my 获取用户购买状态,返回ID数组
+GET course/plans/my?plan_id={id} 判断当前用户是否购买该计划
+GET course/plans/{id}/my-course 获取当前用户对计划中的课程的状态
+
+GET course/courses/{id}/buy-status
+
+GET course/sections/{id}
+GET course/homeworks/{id}
+GET course/tasks/{id}
+
+POST course/sections/{id}/time sections 每隔30秒调用一次，sections传30，记录用户学习时长
+
+GET homeworks/{id}/my
+GET tasks/{id}/my
+GET graduation_projects/{id}/my
+
+POST homeworks/{id}
+POST tasks/{id}
+POST graduation_projects/{id}
+
+传 full_name
+https://github.com/<full_name>

@@ -53,7 +53,7 @@ export default {
 
 <style scoped lang="less">
 .story-section{
-
+    padding-top: 20px;
     h2{
         padding-top: 10px;
         line-height: 70px;

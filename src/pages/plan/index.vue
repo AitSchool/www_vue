@@ -35,6 +35,14 @@
                     </div>
                 </div>
             </div>
+            <div class="graduation-section" v-if="false">
+                <h3>毕业设计</h3>
+                <div class="graduation-list">
+                    <div class="graduation-item" v-for="graduation in plan.graduation_projects">
+                        <router-link :to="{ name:'graduation_page',params: { id: graduation.id}}" >{{graduation.name}}</router-link>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -43,7 +51,6 @@
 import axios from 'axios';
 import storage from '@/utils/storage.js';
 import API from '@/config/api.js';
-
 
 export default {
     name: 'plan_page',
@@ -56,83 +63,7 @@ export default {
     data () {
         return {
             plan:{},
-            is_buy: true,
-            planInfo:{
-                title: 'Web前端工程师',
-                image_path: 'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170704/4cdffb64-3d45-49f3-84c3-60f2349a25c2.png',
-                description: 'Web前端工程师是目前最火的互联网职业，它能充分理解项目需求和设计需求，并与设计师、后端工程师紧密合作，产出高质量的产品前端层，为用户呈现最好的界面交互体验。',
-                status: 0, // 0 没报名，1 已报名没付款，2 已报名并付款
-                progress: "20%", // 百分数或者 null，百分数更具完成计划下任务的百分数来定
-            },
-            taskInfo:[{
-                id:1,
-                title:'HTML',
-                description: 'Web结构',
-                score: 'A', // 任务的评分
-                status: 2, // 0 没付款，1 已下订单但没付款，2 已报名并付款
-                progress: "100%", // 每个章下作业完成的百分数
-
-            },{
-                id:2,
-                title:'CSS',
-                description: 'Web样式',
-                score: null, 
-                status: 2, 
-                progress: "80%",
-                
-            },{
-                id:3,
-                title:'JavaScript Bascis',
-                description: 'JS基础',
-                score: null, 
-                status: 2, 
-                progress: "0%",
-                
-            },{
-                id:3,
-                title:'JavaScript Web',
-                description: 'Web 交互',
-                score: null, 
-                status: 0, 
-                progress: null,
-                
-            },{
-                id:4,
-                title:'JQuery',
-                description: 'JQuery',
-                score: null, 
-                status: 0, 
-                progress: null,
-                
-            },{
-                id:4,
-                title:'VUE',
-                description: 'VUE',
-                score: null, 
-                status: 0, 
-                progress: null,
-            },{
-                id:5,
-                title:'REACT',
-                description: 'REACT',
-                score: null, 
-                status: 0, 
-                progress: null,
-            },{
-                id:5,
-                title:'Angular',
-                description: 'Angular',
-                score: null, 
-                status: 0, 
-                progress: null,
-            },{
-                id:5,
-                title:'工程化',
-                description: '工程化',
-                score: null, 
-                status: 0, 
-                progress: null,
-            }]
+            is_buy: false,
         }
     },
     methods: {
@@ -420,6 +351,20 @@ export default {
                 }
             }
 
+        }
+    }
+
+    .graduation-section{
+        margin-top: 70px;
+
+        h3{
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .graduation-item{
+            line-height: 20px;
+            color: #666;
         }
     }
 }

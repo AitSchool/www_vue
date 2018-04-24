@@ -1,10 +1,10 @@
 <template>
-    <div class="homework_page">
+    <div class="task_page">
         <div class="container">
-            <div class="overview-section" v-if="homework.name">
-                <p class="title">{{homework.name}}</p>
+            <div class="overview-section" v-if="task.name">
+                <p class="title">{{task.name}}</p>
                 <div class="description">
-                    <Marked :content="homework.content"></Marked>
+                    <Marked :content="task.content"></Marked>
                 </div>
                 <div class="sub-section">
                     <p class="title" v-if="subLog.length">提交记录</p>
@@ -35,7 +35,7 @@
                         </tbody>
                     </table>
                     <div class="btn-container" v-if="subLog.length < 3">
-                        <a href="javascript:;" @click="submitEvent">提交作业</a>
+                        <a href="javascript:;" @click="submitEvent">提交任务</a>
                     </div>
                 </div>
             </div>
@@ -49,17 +49,17 @@ import storage from '@/utils/storage.js';
 import API from '@/config/api.js';
 
 export default {
-    name: 'homework_page',
+    name: 'task_page',
     created() {
         let params = this.$route.params;
         let id = params.id;
         this.id = id;
-        this.getHomework(id);
+        this.gettask(id);
         this.getSubLog(id);
     },
     data () {
         return {
-            homework:{
+            task:{
                 name:'',
                 content:''
             },
@@ -77,7 +77,7 @@ export default {
             let token = storage.get('token')
             token && axios({
                 method: 'POST',
-                url: `${API.homework}/${id}`,
+                url: `${API.task}/${id}`,
                 headers: {
                     Authorization:`Bearer ${token}`
                 },
@@ -100,18 +100,18 @@ export default {
         commentEvent:function(data){
             data && alert(data)
         },
-        getHomework:function(id){
+        gettask:function(id){
             let token = storage.get('token')
             token && axios({
                 method: 'get',
-                url: `${API.homework}/${id}`,
+                url: `${API.task}/${id}`,
                 headers: {
                     Authorization:`Bearer ${token}`
                 }
             })
             .then( (response)=> {
-                this.homework = response.data;
-                console.log(this.homework)
+                this.task = response.data;
+                console.log(this.task)
             })
             .catch( (error)=> {
                 console.log(error)
@@ -121,7 +121,7 @@ export default {
             let token = storage.get('token')
             token && axios({
                 method: 'get',
-                url: `${API.homework}/${id}/my`,
+                url: `${API.task}/${id}/my`,
                 headers: {
                     Authorization:`Bearer ${token}`
                 }
@@ -142,7 +142,7 @@ export default {
 
 </script>
 <style scoped type="text/css" lang="less">
-.homework_page{
+.task_page{
     padding-bottom: 70px;
 
     .overview-section{

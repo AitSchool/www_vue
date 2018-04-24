@@ -6,6 +6,8 @@ import BlogPage from '@/pages/blog/index'
 import CoursePage from '@/pages/course/index'
 import SectionPage from '@/pages/section/index'
 import HomeworkPage from '@/pages/homework/index'
+import GraduationPage from '@/pages/graduation/index'
+import TaskPage from '@/pages/task/index'
 import LoginPage from '@/pages/login/index'
 import NotFoundPage from '@/pages/common/404'
 
@@ -52,6 +54,16 @@ export default new Router({
             path: '/homework/:id',
             name: 'homework_page',
             component: HomeworkPage
-        }
+        },
+        {
+            path: '/task/:id',
+            name: 'task_page',
+            component: TaskPage
+        },
+        {
+            path: '/graduation/:id',
+            name: 'graduation_page',
+            component: GraduationPage
+        },
     ]
 })

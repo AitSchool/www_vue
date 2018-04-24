@@ -21,7 +21,13 @@
                         <div class="main-aside">
                             <img src="./../../assets/images/book.svg">
                             <p class="tips">实战项目</p>
-                            <p class="small" v-for="task in course.tasks">{{task.name}}</p>
+                            <p class="small" v-if="!can_learn" v-for="task in course.tasks">{{task.name}}</p>
+                            
+                            <router-link  v-if="can_learn" class="small"  v-for="task in course.tasks" :key="task.id" :to="{ name:'task_page',params: { 
+                                id: task.id  }}" >
+                                <p class="small">{{task.name}}</p>
+                            </router-link>
+
                         </div>
                         <div class="main-content">
                             <h4>先备知识</h4>
@@ -42,7 +48,10 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <p class="link" v-for="homework in chapter.homeworks">{{homework.name}}</p>
+                                            <p class="link" v-if="!can_learn" v-for="homework in chapter.homeworks">{{homework.name}}</p>
+                                            <router-link v-else class="link"  v-for="homework in chapter.homeworks" :key="homework.id" :to="{ name:'homework_page',params: { 
+                                                id: homework.id  }}" >{{homework.name}}</router-link>
+
                                         </div>
                                     </li>
                                 </ul>

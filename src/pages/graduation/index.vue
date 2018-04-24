@@ -1,10 +1,10 @@
 <template>
-    <div class="homework_page">
+    <div class="graduation_page">
         <div class="container">
-            <div class="overview-section" v-if="homework.name">
-                <p class="title">{{homework.name}}</p>
+            <div class="overview-section" v-if="graduation.name">
+                <p class="title">{{graduation.name}}</p>
                 <div class="description">
-                    <Marked :content="homework.content"></Marked>
+                    <Marked :content="graduation.content"></Marked>
                 </div>
                 <div class="sub-section">
                     <p class="title" v-if="subLog.length">提交记录</p>
@@ -35,7 +35,7 @@
                         </tbody>
                     </table>
                     <div class="btn-container" v-if="subLog.length < 3">
-                        <a href="javascript:;" @click="submitEvent">提交作业</a>
+                        <a href="javascript:;" @click="submitEvent">提交毕设</a>
                     </div>
                 </div>
             </div>
@@ -49,17 +49,17 @@ import storage from '@/utils/storage.js';
 import API from '@/config/api.js';
 
 export default {
-    name: 'homework_page',
+    name: 'graduation_page',
     created() {
         let params = this.$route.params;
         let id = params.id;
         this.id = id;
-        this.getHomework(id);
+        this.getGraduation(id);
         this.getSubLog(id);
     },
     data () {
         return {
-            homework:{
+            graduation:{
                 name:'',
                 content:''
             },
@@ -77,7 +77,7 @@ export default {
             let token = storage.get('token')
             token && axios({
                 method: 'POST',
-                url: `${API.homework}/${id}`,
+                url: `${API.graduation}/${id}`,
                 headers: {
                     Authorization:`Bearer ${token}`
                 },
@@ -100,18 +100,18 @@ export default {
         commentEvent:function(data){
             data && alert(data)
         },
-        getHomework:function(id){
+        getGraduation:function(id){
             let token = storage.get('token')
             token && axios({
                 method: 'get',
-                url: `${API.homework}/${id}`,
+                url: `${API.graduation}/${id}`,
                 headers: {
                     Authorization:`Bearer ${token}`
                 }
             })
             .then( (response)=> {
-                this.homework = response.data;
-                console.log(this.homework)
+                this.graduation = response.data;
+                console.log(this.graduation)
             })
             .catch( (error)=> {
                 console.log(error)
@@ -121,7 +121,7 @@ export default {
             let token = storage.get('token')
             token && axios({
                 method: 'get',
-                url: `${API.homework}/${id}/my`,
+                url: `${API.graduation}/${id}/my`,
                 headers: {
                     Authorization:`Bearer ${token}`
                 }
@@ -142,7 +142,7 @@ export default {
 
 </script>
 <style scoped type="text/css" lang="less">
-.homework_page{
+.graduation_page{
     padding-bottom: 70px;
 
     .overview-section{

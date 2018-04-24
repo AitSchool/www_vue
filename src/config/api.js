@@ -8,7 +8,9 @@ const API = {
     course: HOST + '/course/courses',
     section: HOST + '/course/sections',
     homework: HOST + '/course/homeworks',
-    blog: HOST + '/blog'
+    task: HOST + '/course/tasks',
+    graduation: HOST + '/course/graduation_projects',
+    blog: HOST + '/blog',
 }
 
 export default API
