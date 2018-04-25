@@ -27,7 +27,7 @@ GET course/sections/{id}
 GET course/homeworks/{id}
 GET course/tasks/{id}
 
-POST course/sections/{id}/time sections 每隔30秒调用一次，sections传30，记录用户学习时长
+POST course/sections/{id}/time sections 每隔30秒调用一次，seconds 传30，记录用户学习时长
 
 GET homeworks/{id}/my
 GET tasks/{id}/my

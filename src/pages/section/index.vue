@@ -42,6 +42,12 @@ export default {
     name: 'section_page',
     created () {
         this.fetchData()
+        this.setInterval = setInterval(()=>{
+            this.sendtimes();
+        },30000)
+    },
+    beforeDestroy () {
+        clearInterval(this.setInterval)
     },
     data () {
         return {
@@ -120,6 +126,28 @@ export default {
         '$route': 'fetchData'
     },
     methods: {
+        sendtimes:function(){
+            let params = this.$route.params;
+            let id = params.section;
+            let token = storage.get('token')
+
+            token && axios({
+                method: 'POST',
+                url: `${API.section}/${id}/time`,
+                headers: {
+                    Authorization:`Bearer ${token}`
+                },
+                data:{
+                    seconds:30
+                }
+            })
+            .then( (response)=> {
+                console.log(response)
+            })
+            .catch( (error)=> {
+                console.log(error)
+            });
+        },
         fetchData () {
             let params = this.$route.params;
             this.course_id = params.id;

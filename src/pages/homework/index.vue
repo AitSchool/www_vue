@@ -25,8 +25,8 @@
 
                             <tr v-for="(item,index) in subLog">
                                 <td >V{{item.times}}</td>
-                                <td>{{item.created_at.date}}</td>
-                                <td><a :href="item.url" class="link">Github URL</a></td>
+                                <td>{{item.created_at}}</td>
+                                <td><a :href="item.url" class="link">{{item.full_name}}</a></td>
                                 <td>{{item.correct_at}}</td>
                                 <td>{{item.teacher.name || ''}}</td>
                                 <td class="link" @click="commentEvent(item.remark)">{{item.remark ? '查看点评' : ''}}</td>
