@@ -16,7 +16,7 @@
                             </div>
                         </div>
                     
-                        <a v-if="!is_buy" href="javascript:;" class="join-btn">加入计划，马上学习</a>
+                        <a v-if="false" href="javascript:;" class="join-btn">加入计划，马上学习</a>
                         
                     </div>
                 </div>
