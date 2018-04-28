@@ -1,7 +1,4 @@
-// const HOST = 'http://api.aitschool.com'
-const HOST = 'https://www.aitschool.com/api'
-
-
+const HOST = 'https://api.aitschool.com'
 
 const API = {
     login: HOST + '/auth/oauth2',
