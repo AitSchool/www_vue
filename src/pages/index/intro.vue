@@ -123,9 +123,6 @@ export default {
             // }
 
             &:nth-child(1){
-                background: url('./../../assets/images/3jk_tmp_2.jpg');
-                background-size: auto 420px;
-
                 // &:hover{
                     .mask{
                         background: rgba(250,234,103,.9);
@@ -138,9 +135,6 @@ export default {
 
 
             &:nth-child(2){
-                background: url('./../../assets/images/3jk_tmp_1.jpg');
-                background-size: auto 420px;
-                background-position: center -20px;
 
                 // &:hover{
                     .mask{
@@ -153,9 +147,6 @@ export default {
             }
 
             &:nth-child(3){
-                background: url('./../../assets/images/3jk_tmp_3.jpg');
-                background-size: auto 420px;
-                background-position: -280px 0;
                 // &:hover{
                     .mask{
                         background: rgba(221,94,110,.9);

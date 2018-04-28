@@ -76,66 +76,16 @@ export default {
         this.getCourse(id);
         this.hasBuy(id);
     },
+    props: {
+        token: {
+            type: String,
+            default: '',
+        },
+    },
     data () {
         return {
             can_learn:false,
             course:{},
-            courseInfo:{
-                id: 11,
-                status: 0, //0 不能学习；1 已下单但没付款，不能学习；2 已付款或者免费，可以学习
-                title:'HTML & CSS',
-                description: 'HTML，是我们所有信息、资源流的集合与标记，如同树干与树叶的关系，告诉我们页面有什么，在哪里。就其核心来说, 是由元素组成的语言，为文本赋予它在一个文档中不同的意义, 结构化文档为逻辑区块 并且可以嵌入图片影像等资源到一个页面中。',
-                duration: '20 小时',
-                imageUrl: 'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170704/4cdffb64-3d45-49f3-84c3-60f2349a25c2.png',
-                task: '写一个属于自己的个人网页',
-                task_score: null, // 完成任务后的评分
-                ready: '我们建议有对Web有一定的了解，可以在谷歌上搜索，以及（最重要的）坚持向前推进的决心！',
-                chapters:[{
-                    id:1,
-                    title:'第一章名称',
-                    homework:'作业：下载体验所有浏览器',
-                    homework_score: 'A', //作业是否完成,完成有评分，否则为null
-                    sections:[{
-                        id: 1,
-                        title: '什么是因特网',
-                        study_status:0, //0 未学习过，1，学习过
-                    },{
-                        id: 2,
-                        title: '什么是万维网',
-                        study_status:0,
-                    },{
-                        id: 3,
-                        title: 'web 浏览器',
-                        study_status:0,
-                    },{
-                        id: 4,
-                        title: '编程语言是什么？',
-                        study_status:0,
-                    }]
-                },{
-                    id:2,
-                    title:'第二章名称',
-                    homework:'作业：下载体验所有浏览器',
-                    homework_score: null,
-                    sections:[{
-                        id: 1,
-                        title: '什么是因特网',
-                        study_status:0,
-                    },{
-                        id: 2,
-                        title: '什么是万维网',
-                        study_status:0,
-                    },{
-                        id: 3,
-                        title: 'web 浏览器',
-                        study_status:0,
-                    },{
-                        id: 4,
-                        title: '编程语言是什么？',
-                        study_status:0,
-                    }]
-                }]
-            }
         }
     },
     methods: {
@@ -155,12 +105,12 @@ export default {
             });
         },
         hasBuy:function(id){
-            let token = storage.get('token')
-            token && axios({
+            
+            this.token && axios({
                 method: 'get',
                 url: `${API.course}/${id}/buy-status`,
                 headers: {
-                    Authorization:`Bearer ${token}`
+                    Authorization:`Bearer ${this.token}`
                 }
             })
             .then( (response)=> {

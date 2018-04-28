@@ -57,6 +57,12 @@ export default {
         this.gettask(id);
         this.getSubLog(id);
     },
+    props: {
+        token: {
+            type: String,
+            default: '',
+        },
+    },
     data () {
         return {
             task:{
@@ -74,8 +80,8 @@ export default {
                 return
             }
 
-            let token = storage.get('token')
-            token && axios({
+            
+            this.token && axios({
                 method: 'POST',
                 url: `${API.task}/${id}`,
                 headers: {
@@ -101,8 +107,8 @@ export default {
             data && alert(data)
         },
         gettask:function(id){
-            let token = storage.get('token')
-            token && axios({
+            
+            this.token && axios({
                 method: 'get',
                 url: `${API.task}/${id}`,
                 headers: {
@@ -118,8 +124,8 @@ export default {
             });
         },
         getSubLog:function(id){
-            let token = storage.get('token')
-            token && axios({
+            
+            this.token && axios({
                 method: 'get',
                 url: `${API.task}/${id}/my`,
                 headers: {

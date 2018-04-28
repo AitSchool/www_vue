@@ -60,6 +60,12 @@ export default {
         this.hasBuy(id);
         this.getMyCourse(id);
     },
+    props: {
+        token: {
+            type: String,
+            default: '',
+        },
+    },
     data () {
         return {
             plan:{},
@@ -82,12 +88,12 @@ export default {
             });
         },
         hasBuy:function(id){
-            let token = storage.get('token')
-            token && axios({
+            
+            this.token && axios({
                 method: 'get',
                 url: `${API.plan}/my?plan_id=${id}`,
                 headers: {
-                    Authorization:`Bearer ${token}`
+                    Authorization:`Bearer ${this.token}`
                 }
             })
             .then( (response)=> {
@@ -99,12 +105,12 @@ export default {
             });
         },
         getMyCourse:function(id){
-            let token = storage.get('token')
-            token && axios({
+            
+            this.token && axios({
                 method: 'get',
                 url: `${API.plan}/${id}/my-course`,
                 headers: {
-                    Authorization:`Bearer ${token}`
+                    Authorization:`Bearer ${this.token}`
                 }
             })
             .then( (response)=> {

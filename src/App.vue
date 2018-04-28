@@ -1,8 +1,8 @@
 <template>
     <div id="app">
-        <Header :user-info="userInfo"></Header>
+        <Header :token="token" :user-info="userInfo"></Header>
         <div class="mainer">
-            <router-view/>
+            <router-view :token="token"/>
         </div>
         <Footer></Footer>
     </div>
@@ -25,13 +25,17 @@ export default {
     },
     data () {
         return {
-            userInfo: {}
+            userInfo: {},
+            token:''
         }
     },
     methods: {
         getUserInfo:function (){
             let token    = storage.get('token')
             let userInfo = storage.get('userInfo')
+
+            token && (this.token = token)
+
             if(userInfo){
                 this.userInfo = userInfo
             }else if(token){

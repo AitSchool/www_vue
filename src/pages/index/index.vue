@@ -29,6 +29,12 @@ export default {
         this.getPlan();
         this.getMyPlan();
     },
+    props: {
+        token: {
+            type: String,
+            default: '',
+        },
+    },
     data () {
         return {
             plans: [],
@@ -59,12 +65,12 @@ export default {
         },
         getMyPlan:function(){
             // 获取用户购买状态
-            let token = storage.get('token')
-            token && axios({
+            
+            this.token && axios({
                 method: 'get',
                 url: API.plan + '/my',
                 headers: {
-                    Authorization:`Bearer ${token}`
+                    Authorization:`Bearer ${this.token}`
                 }
             })
             .then( (response)=> {

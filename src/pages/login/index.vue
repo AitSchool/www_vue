@@ -19,7 +19,6 @@ export default {
     name: 'login_page',
     created () {
         let code  = this.$route.query.code;
-
         if(!code){
             this.$router.push({ name: 'index_page' })
             return
@@ -35,8 +34,8 @@ export default {
             window.location.href = "/"
         })
         .catch((error) =>{
+            console.log('登录失败')
             this.$router.push({ name: 'index_page' })
-            next('/')
         });
     },
     data () {

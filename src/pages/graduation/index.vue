@@ -57,6 +57,12 @@ export default {
         this.getGraduation(id);
         this.getSubLog(id);
     },
+    props: {
+        token: {
+            type: String,
+            default: '',
+        },
+    },
     data () {
         return {
             graduation:{
@@ -74,12 +80,12 @@ export default {
                 return
             }
 
-            let token = storage.get('token')
-            token && axios({
+            
+            this.token && axios({
                 method: 'POST',
                 url: `${API.graduation}/${id}`,
                 headers: {
-                    Authorization:`Bearer ${token}`
+                    Authorization:`Bearer ${this.token}`
                 },
                 data:{
                     full_name: link
@@ -101,12 +107,12 @@ export default {
             data && alert(data)
         },
         getGraduation:function(id){
-            let token = storage.get('token')
-            token && axios({
+            
+            this.token && axios({
                 method: 'get',
                 url: `${API.graduation}/${id}`,
                 headers: {
-                    Authorization:`Bearer ${token}`
+                    Authorization:`Bearer ${this.token}`
                 }
             })
             .then( (response)=> {
@@ -118,12 +124,12 @@ export default {
             });
         },
         getSubLog:function(id){
-            let token = storage.get('token')
-            token && axios({
+            
+            this.token && axios({
                 method: 'get',
                 url: `${API.graduation}/${id}/my`,
                 headers: {
-                    Authorization:`Bearer ${token}`
+                    Authorization:`Bearer ${this.token}`
                 }
             })
             .then( (response)=> {

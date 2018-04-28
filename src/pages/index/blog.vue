@@ -3,17 +3,17 @@
         <div class="container">
             <ul>
                 <li>
-                    <a href="/blog/1" target="_blank">
+                    <a href="/blog/1">
                         <h3 class="title">兴趣 · 孵化计划</h3>
                     </a>
                 </li>
                 <li>
-                    <a href="/blog/1" target="_blank">
+                    <a href="/blog/1">
                         <h3 class="title">职业 · 新蕾计划</h3>
                     </a>
                 </li>
                 <li>
-                    <a href="/blog/1" target="_blank">
+                    <a href="/blog/1">
                         <h3 class="title">暑期 · 破壳计划</h3>
                     </a>
                 </li>
@@ -48,29 +48,24 @@ export default {
         min-height: 120px;
         width: 320px;
         font-size: 12px;
-        background: #fff;
+        background-color: #fff;
         box-shadow: 5px 5px 25px 0px rgba(46,61,73,0.2);
         transition: box-shadow 0.3s ease;
         margin-right: 15px;
+        background-size: cover;
 
         &:nth-child(1){
-            background: url('./../../assets/images/etus-banner.jpg');
-            background-size: cover;
-            background-position: 0 -30px;
+            background-image: url('./../../assets/images/index/blogad_1.jpg');
         }
 
 
         &:nth-child(2){
-            background: url('./../../assets/images/3jk_tmp_1.jpg');
-            background-size: cover;
-            background-position: 0 -32px;
+            background-image: url('./../../assets/images/index/blogad_1.jpg');
         }
 
 
         &:nth-child(3){
-            background: url('./../../assets/images/3jk_tmp_3.jpg');
-            background-size: auto 120px;
-            // background-position: -280px 0;
+            background-image: url('./../../assets/images/index/blogad_1.jpg');
         }
 
         &:hover{

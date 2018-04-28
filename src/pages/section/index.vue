@@ -14,7 +14,11 @@
                                     section: section.id }}" >{{section.name}}</router-link>
                             </li>
                             <li>
-                                <a class="link" :href="'/homework/'+ chapter.id" v-for="homework in chapter.homeworks">{{homework.name}}</a>
+                                <router-link 
+                                    v-for="homework in chapter.homeworks" 
+                                    :to="{ name:'homework_page',params: {id: homework.id }}"  
+                                    :key="homework.id" 
+                                >{{homework.name}}</router-link>
                             </li>
                         </ul>
                     </li>
@@ -45,6 +49,12 @@ export default {
         this.setInterval = setInterval(()=>{
             this.sendtimes();
         },30000)
+    },
+    props: {
+        token: {
+            type: String,
+            default: '',
+        },
     },
     beforeDestroy () {
         clearInterval(this.setInterval)
@@ -129,13 +139,12 @@ export default {
         sendtimes:function(){
             let params = this.$route.params;
             let id = params.section;
-            let token = storage.get('token')
 
-            token && axios({
+            this.token && axios({
                 method: 'POST',
                 url: `${API.section}/${id}/time`,
                 headers: {
-                    Authorization:`Bearer ${token}`
+                    Authorization:`Bearer ${this.token}`
                 },
                 data:{
                     seconds:30
@@ -157,8 +166,8 @@ export default {
             this.getCourse(params.id)
         },
         getCourse:function(id){
-            let token = storage.get('token')
-            token && axios({
+
+            this.token && axios({
                 method: 'get',
                 url: `${API.course}/${id}`,
             })
@@ -169,17 +178,16 @@ export default {
             })
             .catch( (error)=> {
                 console.log(error)
-                this.$router.back();
-                // this.$router.push('/')
+                this.$router.push('/')
             });
         },
         getSection:function(id){
-            let token = storage.get('token')
-            token && axios({
+            
+            this.token && axios({
                 method: 'get',
                 url: `${API.section}/${id}`,
                 headers: {
-                    Authorization:`Bearer ${token}`
+                    Authorization:`Bearer ${this.token}`
                 }
             })
             .then( (response)=> {
@@ -187,7 +195,7 @@ export default {
                 console.log(this.section)
             })
             .catch( (error)=> {
-                this.$router.back();
+                this.$router.push('/')
             });
         }
     },

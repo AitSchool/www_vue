@@ -2,12 +2,12 @@
     <header>
         <div class="container">
             <div class="hd-logo">
-                <a href="/">
+                <router-link :to="{ name:'index_page'}">
                     <img src="./../assets/images/aitschool-M1.svg" alt="logo">
-                </a>
+                </router-link>
             </div>
             <div class="login-contain">
-                <a v-if="userInfo.name">
+                <a v-if="userInfo.name && token">
                     <img class="avatar" :src="userInfo.github_avatar_url" alt="avatar">
                 </a>
                 <a v-else :href="github_login_url">
@@ -29,6 +29,10 @@ export default {
             type: Object,
             default: {}
         },
+        token: {
+            type: String,
+            default: ''
+        }
     },
     data () {
         return {
