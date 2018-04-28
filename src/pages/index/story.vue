@@ -5,7 +5,7 @@
             <ul class="story-list">
                 <li>
                     <div class="item-image">
-                        <img src="./../../assets/images/avatar/pys-avatar.jpg">
+                        <img src="./../../assets/images/github_default_avatar.png">
                     </div>
                     <p class="name">潘雅斯</p>
                     <p class="desc">毕业后就职业广州农业银行四年，零基础转行前端程序媛。在追逐的路上，现实和压力会束缚你前进的步伐，重要的是有没有一颗跳动的坚持的内心。</p>
@@ -13,7 +13,7 @@
                 </li>
                 <li>
                     <div class="item-image">
-                        <img src="./../../assets/images/avatar/dy-avatar.jpg">
+                        <img src="./../../assets/images/github_default_avatar.png">
                     </div>
                     <p class="name">董一</p>
                     <p class="desc">留美本科，就职于500强金融外企。被互联网技术发展前景所吸引，零基础投身于编程学习，希望能把想法实现，开发一个技术金融计算的产品。Cool ～ 666</p>

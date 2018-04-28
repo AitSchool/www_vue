@@ -11,7 +11,7 @@
 <script>
 import axios from 'axios';
 import storage from '@/utils/storage.js';
-
+import API from '@/config/api.js';
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
@@ -32,13 +32,12 @@ export default {
         getUserInfo:function (){
             let token    = storage.get('token')
             let userInfo = storage.get('userInfo')
-
             if(userInfo){
                 this.userInfo = userInfo
             }else if(token){
                 axios({
                     method: 'get',
-                    url: 'http://api.aitschool.com/auth/user',
+                    url: API.userInfo,
                     headers: {
                         Authorization:`Bearer ${token}`
                     }
