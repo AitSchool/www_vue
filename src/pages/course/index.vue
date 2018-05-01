@@ -1,6 +1,7 @@
 <template>
-    <div class="course_page" v-if="course.name">
-        <div class="container">
+    <div class="course_page">
+        <Loading v-if="!course.name"></Loading>
+        <div class="container" v-if="course.name">
             <div class="course-crumbs">首页 > 计划 > {{course.name}}</div>
             <div class="course-detail">
                 <div class="course-detail-image">
@@ -67,7 +68,7 @@
 import axios from 'axios';
 import storage from '@/utils/storage.js';
 import API from '@/config/api.js';
-
+import Loading from '@/components/loading.vue'
 export default {
     name: 'course_page',
     created () {
@@ -123,7 +124,7 @@ export default {
         },
     },
     components: {
-
+        Loading
     }
 }
 </script>
@@ -131,7 +132,6 @@ export default {
 <style scoped lang="less">
 
 .course_page{
-    background: #f5f5f5;
     height: 100%;
     padding-bottom: 70px;
 
@@ -146,7 +146,6 @@ export default {
     .course-detail{
         display: flex;
         padding: 20px;
-        height: 240px;
         background: #fff;
         box-shadow: 0px 1px 20px 0px rgba(46, 61, 73, 0.2);
         border-radius: 8px;
@@ -154,6 +153,7 @@ export default {
         .course-detail-image{
             width: 300px;
             flex: none;
+            height: 200px;
             margin-right: 25px;
             img{
                 width: 100%;
@@ -275,6 +275,19 @@ export default {
             height: 40px;
             color: #666;
             font-size: 13px;
+
+            a{
+                display: block;
+                height: 100%;
+            }
+
+            &:hover{
+                background: #f1f1f1;
+
+                a{
+                    color: #02b3e4;
+                }
+            }
         }
 
         .link{

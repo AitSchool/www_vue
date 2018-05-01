@@ -55,9 +55,9 @@ export default {
 .story-section{
     padding-top: 20px;
     h2{
-        padding-top: 10px;
-        line-height: 70px;
-        height: 70px;
+        margin-top: 10px;
+        line-height: 60px;
+        height: 60px;
         text-align: left;
         font-size: 18px;
         color:#333;
@@ -72,7 +72,6 @@ export default {
             display: inline-block;
             width: 242px;
             height: 381px;
-            padding: 0 5px 45px;
             margin-right: 10px;
             background: #fff;
             border-radius: 4px;

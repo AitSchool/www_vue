@@ -1,7 +1,8 @@
 <template>
     <div class="homework_page">
-        <div class="container">
-            <div class="overview-section" v-if="homework.name">
+        <Loading v-if="!homework.name"></Loading>
+        <div class="container"  v-if="homework.name">
+            <div class="overview-section">
                 <p class="title">{{homework.name}}</p>
                 <div class="description">
                     <Marked :content="homework.content"></Marked>
@@ -47,6 +48,7 @@ import Marked from '@/components/marked.vue'
 import axios from 'axios';
 import storage from '@/utils/storage.js';
 import API from '@/config/api.js';
+import Loading from '@/components/loading.vue'
 
 export default {
     name: 'homework_page',
@@ -80,7 +82,6 @@ export default {
                 return
             }
 
-            
             this.token && axios({
                 method: 'POST',
                 url: `${API.homework}/${id}`,
@@ -142,7 +143,8 @@ export default {
         },
     },
     components: {
-        Marked
+        Marked,
+        Loading
     }
 }
 

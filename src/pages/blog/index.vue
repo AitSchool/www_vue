@@ -1,11 +1,14 @@
 <template>
-    <div class="blog_page" v-if="blog.title">
-        <div class="blog-header">
-            <h2 class="title">{{blog.title}}</h2>
-            <p class="info">{{blog.updated_at}}@{{blog.creator.name}}</p>
-        </div>
-        <div class="blog-content">
-            <Marked :content="blog.content"></Marked>
+    <div class="blog_page" >
+        <Loading v-if="!blog.title"></Loading>
+        <div class="container" v-if="blog.title">
+            <div class="blog-header">
+                <h2 class="title">{{blog.title}}</h2>
+                <p class="info">{{blog.updated_at}}@{{blog.creator.name}}</p>
+            </div>
+            <div class="blog-content">
+                <Marked :content="blog.content"></Marked>
+            </div>
         </div>
     </div>
 </template>
@@ -14,9 +17,9 @@
 import axios from 'axios';
 import storage from '@/utils/storage.js';
 import API from '@/config/api.js';
-
 import mock from './mock_data.js'
 import Marked from '@/components/marked.vue'
+import Loading from '@/components/loading.vue'
 
 export default {
     name: 'blog_page',
@@ -50,7 +53,8 @@ export default {
         },
     },
     components: {
-        Marked
+        Marked,
+        Loading
     }
 }
 </script>
@@ -58,8 +62,7 @@ export default {
 <style scoped lang="less">
 
 .blog-header{
-    height: 300px;
-    padding-top: 100px;
+    padding: 100px 0;
     text-align: center;
     
     .title{

@@ -105,9 +105,9 @@ export default {
 .serve-section{
 
     h2{
-        padding-top: 10px;
-        line-height: 70px;
-        height: 70px;
+        margin-top: 10px;
+        line-height: 60px;
+        height: 60px;
         text-align: left;
         font-size: 18px;
         color:#333;
@@ -124,7 +124,6 @@ export default {
             background: #fff;
             margin-right: 10px;
             position: relative;
-            padding-top: 30px;
             text-align: center;
             transition: all .5s ease;
 
@@ -155,6 +154,7 @@ export default {
                 color:#35b558;
                 line-height: 22px;
                 font-weight: 300;
+                padding-top: 30px;
             }
 
             .title-next{
@@ -176,15 +176,13 @@ export default {
                 a,.qun{
                     display: inline-block;
                     min-width: 85px;
-                    height: 32px;
-                    line-height: 30px;
                     text-align: center;
                     font-size: 13px;
                     color:#666;
                     border:1px solid #e4e4e4;
                     transition: all .5s ease;
                     margin-right: 20px;
-                    padding: 0 8px;
+                    padding: 8px;
 
                     &:last-child{
                         margin-right: 0px;

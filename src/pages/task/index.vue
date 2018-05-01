@@ -1,7 +1,8 @@
 <template>
     <div class="task_page">
-        <div class="container">
-            <div class="overview-section" v-if="task.name">
+        <Loading v-if="!task.name"></Loading>
+        <div class="container" v-if="task.name">
+            <div class="overview-section">
                 <p class="title">{{task.name}}</p>
                 <div class="description">
                     <Marked :content="task.content"></Marked>
@@ -47,6 +48,7 @@ import Marked from '@/components/marked.vue'
 import axios from 'axios';
 import storage from '@/utils/storage.js';
 import API from '@/config/api.js';
+import Loading from '@/components/loading.vue'
 
 export default {
     name: 'task_page',
@@ -142,7 +144,8 @@ export default {
         },
     },
     components: {
-        Marked
+        Marked,
+        Loading
     }
 }
 

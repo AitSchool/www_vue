@@ -1,7 +1,8 @@
 <template>
     <div class="graduation_page">
-        <div class="container">
-            <div class="overview-section" v-if="graduation.name">
+        <Loading v-if="!graduation.name"></Loading>
+        <div class="container" v-if="graduation.name">
+            <div class="overview-section">
                 <p class="title">{{graduation.name}}</p>
                 <div class="description">
                     <Marked :content="graduation.content"></Marked>
@@ -47,6 +48,7 @@ import Marked from '@/components/marked.vue'
 import axios from 'axios';
 import storage from '@/utils/storage.js';
 import API from '@/config/api.js';
+import Loading from '@/components/loading.vue'
 
 export default {
     name: 'graduation_page',
@@ -142,7 +144,8 @@ export default {
         },
     },
     components: {
-        Marked
+        Marked,
+        Loading
     }
 }
 

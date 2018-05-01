@@ -1,6 +1,7 @@
 <template>
-    <div class="plan_page" v-if="plan.name">
-        <div class="container">
+    <div class="plan_page">
+        <Loading v-if="!plan.name"></Loading>
+        <div class="container" v-if="plan.name">
             <div class="intro-section">
                 <h2>{{plan.name}}</h2>
                 <div class="plan-info">
@@ -51,6 +52,7 @@
 import axios from 'axios';
 import storage from '@/utils/storage.js';
 import API from '@/config/api.js';
+import Loading from '@/components/loading.vue'
 
 export default {
     name: 'plan_page',
@@ -124,7 +126,7 @@ export default {
         }
     },
     components: {
-
+        Loading
     }
 }
 </script>

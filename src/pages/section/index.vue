@@ -1,7 +1,8 @@
 <template>
     <div class="section_page">
-        <div class="container">
-            <div class="navigation-contain" v-if="course.name">
+        <Loading v-if="!section.name"></Loading>
+        <div class="container" v-if="section.name">
+            <div class="navigation-contain">
                 <h3 id="course_id">{{course.name}}</h3>
                 <ul class="chapter_list">
                     <li class="chapter_item" v-for="chapter in course.chapters" :class="[(chapter.id == chapter_id) ? 'chapter_active' : '']">
@@ -41,6 +42,7 @@ import API from '@/config/api.js';
 
 import Marked from '@/components/marked.vue'
 import mock from '@/pages/blog/mock_data.js'
+import Loading from '@/components/loading.vue'
 
 export default {
     name: 'section_page',
@@ -200,7 +202,8 @@ export default {
         }
     },
     components: {
-        Marked
+        Marked,
+        Loading
     }
 }
 </script>

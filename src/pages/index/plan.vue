@@ -1,5 +1,5 @@
 <template>
-    <div class="plan-section" v-show="plans.length">
+    <div class="plan-section container" v-show="plans.length">
         <h2>职业计划</h2>
         <div class="container">
             <div class="card-item"  v-for="plan in plans" >
@@ -109,10 +109,8 @@ export default {
     font-size: 0;
 
     h2{
-        width: 1000px;
-        margin: 0 auto;
-        height: 70px;
-        padding-top: 10px;
+        margin-top: 10px;
+        height: 60px;
         font-size: 18px;
         line-height: 60px;
         color: #333;

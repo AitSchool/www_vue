@@ -78,7 +78,6 @@ export default {
             .mask{
                 height: 100%;
                 text-align: center;
-                padding-top: 40px;
                 transition: all .2s ease;
 
                 >a{
@@ -90,9 +89,9 @@ export default {
             }
 
             .desc{
+                padding-top: 40px;
                 font-size: 21px;
                 font-weight: 700;
-                height: 100px;
                 line-height: 100px;
                 opacity: 0;
             }
