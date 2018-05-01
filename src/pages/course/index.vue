@@ -41,7 +41,7 @@
                             <div class="homeworks-container">
                                 <p class="link homeworks-item" v-if="!can_learn" v-for="homework in chapter.homeworks">{{homework.name}}
                                 </p>
-                                <router-link v-else class="link homeworks-item"  v-for="homework in chapter.homeworks" :key="homework.id" :to="{ name:'homework_page',params: { 
+                                <router-link v-if="can_learn" class="link homeworks-item"  v-for="homework in chapter.homeworks" :key="homework.id" :to="{ name:'homework_page',params: { 
                                     id: homework.id  }}" >{{homework.name}}
                                 </router-link>
                             </div>
@@ -278,6 +278,7 @@ export default {
         }
 
         .link{
+            display: block;
             font-size: 13px;
             font-weight: 600;
             text-decoration: none;
@@ -307,6 +308,7 @@ export default {
         }
 
         .link{
+            display: block;
             font-size: 13px;
             font-weight: 600;
             text-decoration: none;

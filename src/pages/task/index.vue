@@ -85,7 +85,7 @@ export default {
                 method: 'POST',
                 url: `${API.task}/${id}`,
                 headers: {
-                    Authorization:`Bearer ${token}`
+                    Authorization:`Bearer ${this.token}`
                 },
                 data:{
                     full_name: link
@@ -112,7 +112,7 @@ export default {
                 method: 'get',
                 url: `${API.task}/${id}`,
                 headers: {
-                    Authorization:`Bearer ${token}`
+                    Authorization:`Bearer ${this.token}`
                 }
             })
             .then( (response)=> {
@@ -129,7 +129,7 @@ export default {
                 method: 'get',
                 url: `${API.task}/${id}/my`,
                 headers: {
-                    Authorization:`Bearer ${token}`
+                    Authorization:`Bearer ${this.token}`
                 }
             })
             .then( (response)=> {
