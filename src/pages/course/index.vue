@@ -1,62 +1,61 @@
 <template>
     <div class="course_page" v-if="course.name">
         <div class="container">
-            <div class="course-section">
-                <div class="contain">
-                    <div class="contain-header">
-                        <div class="header-content">
-                            <i class="tips">{{course.short_name}}</i>
-                            <h4>{{course.name}}</h4>
-                            <p class="desc">{{course.description}}</p>
-                            <div class="details">
-                                <p class="text">学习时长</p>
-                                <p class="time">{{course.duration}}</p>
-                            </div>
+            <div class="course-crumbs">首页 > 计划 > {{course.name}}</div>
+            <div class="course-detail">
+                <div class="course-detail-image">
+                    <img :src="course.image_path">
+                </div>
+                <div class="course-detail-infomation">
+                    <h2 class="title">{{course.name}} - {{course.short_name}}</h2>
+                    <p class="description">{{course.description}}</p>
+                    <div class="price">¥ {{course.price}}</div>
+                    <div class="course-detail-action">
+                        <div class="course-detail-btn">
+                            <a v-if="!can_learn" href="javascript:;" class="course-detail-btn goPay">立即报名</a>
+                            <a v-if="can_learn" href="javascript:;" class="course-detail-btn goStudy">去学习</a>
                         </div>
-                        <div class="header-image">
-                            <img :src="course.image_path">
-                        </div>
+                        <div class="course-detail-duration">时长 : {{course.duration}} 分钟</div>
                     </div>
-                    <div class="contain-main">
-                        <div class="main-aside">
-                            <img src="./../../assets/images/book.svg">
-                            <p class="tips">实战项目</p>
-                            <p class="small" v-if="!can_learn" v-for="task in course.tasks">{{task.name}}</p>
-                            
-                            <router-link  v-if="can_learn" class="small"  v-for="task in course.tasks" :key="task.id" :to="{ name:'task_page',params: { 
-                                id: task.id  }}" >
-                                <p class="small">{{task.name}}</p>
-                            </router-link>
+                </div>
+            </div>
+            <div class="course-catalog">
+                <div class="course-catalog-info">
+                    <h2 class="title">学前需知</h2>
+                    <p class="description">{{course.tips}}</p>
+                </div>
+                <div class="courser-chapter">
+                    <ul>
+                        <li v-for="(chapter, index) in course.chapters" class="chapter-item">
+                            <p class="chapter-title" :data-id="chapter.id">第 {{index + 1}} 章 {{chapter.name}}</p>
+                            <ul class="chapter-children">
+                                <li v-for="(section, sindex) in chapter.sections" class="section-item">
+                                    <span v-if="!can_learn">第 {{sindex + 1}} 节 {{section.name}}</span>
+                                    <router-link v-else :to="{ name:'section_page',params: { 
+                                        id: course.id, 
+                                        chapter: chapter.id, 
+                                        section: section.id }}" >第 {{sindex + 1}} 节 {{section.name}}</router-link>
+                                </li>
+                            </ul>
 
-                        </div>
-                        <div class="main-content">
-                            <h4>先备知识</h4>
-                            <p class="desc">{{course.tips}}</p>
-                            <div class="content-part">
-                                <ul>
-                                    <li v-for="chapter in course.chapters" >
-                                        <div class="part">
-                                            <h5 :data-id="chapter.id">{{chapter.name}}</h5>
-                                            <div class="desc">
-                                                <ul>
-                                                    <li v-for="section in chapter.sections">
-                                                        <span v-if="!can_learn">{{section.name}}</span>
-                                                        <router-link v-else :to="{ name:'section_page',params: { 
-                                                            id: course.id, 
-                                                            chapter: chapter.id, 
-                                                            section: section.id }}" >{{section.name}}</router-link>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <p class="link" v-if="!can_learn" v-for="homework in chapter.homeworks">{{homework.name}}</p>
-                                            <router-link v-else class="link"  v-for="homework in chapter.homeworks" :key="homework.id" :to="{ name:'homework_page',params: { 
-                                                id: homework.id  }}" >{{homework.name}}</router-link>
-
-                                        </div>
-                                    </li>
-                                </ul>
+                            <div class="homeworks-container">
+                                <p class="link homeworks-item" v-if="!can_learn" v-for="homework in chapter.homeworks">{{homework.name}}
+                                </p>
+                                <router-link v-else class="link homeworks-item"  v-for="homework in chapter.homeworks" :key="homework.id" :to="{ name:'homework_page',params: { 
+                                    id: homework.id  }}" >{{homework.name}}
+                                </router-link>
                             </div>
-                        </div>
+
+                        </li>
+                    </ul>
+                </div>
+                <div class="task-section">
+                    <p class="title">实战训练</p>
+                    <div class="task-container">
+                        <p class="task-item link" v-if="!can_learn" v-for="task in course.tasks">{{task.name}}</p>
+                        <router-link  v-if="can_learn" class="task-item link"  v-for="task in course.tasks" :key="task.id" :to="{ name:'task_page',params: { 
+                            id: task.id  }}" >{{task.name}}
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -130,212 +129,191 @@ export default {
 </script>
 
 <style scoped lang="less">
+
 .course_page{
+    background: #f5f5f5;
+    height: 100%;
+    padding-bottom: 70px;
 
-}
-.course-section{
-    margin-top: 70px;
-    margin-bottom: 70px;
+    .course-crumbs{
+        height: 48px;
+        line-height: 48px;
+        font-size: 12px;
+        color: #666;
+        letter-spacing: 1px;
+    }
 
-    .contain{
-        width: 1000px;
-        margin: 0 auto;
-        position: relative;
+    .course-detail{
+        display: flex;
+        padding: 20px;
+        height: 240px;
         background: #fff;
-        box-shadow: 0px 1px 20px 0px rgba(46,61,73,0.2);
+        box-shadow: 0px 1px 20px 0px rgba(46, 61, 73, 0.2);
         border-radius: 8px;
 
-        .contain-header{
-            height: 324px;
-            display: flex;
-            align-items:center;
-            .header-image{
-                width: 380px;
-                height: 324px;
-                flex-shrink:0;
-                img{
-                    width: 100%;
-                    height: 100%;
-                }
-
-            }
-            .header-content{
-                position: relative;
-                height: 324px;
-                flex-grow:1;
-                padding: 72px 60px 0;
-                border-bottom:1px solid rgba(46,61,73,0.2);
-                .tips{
-                    position: absolute;
-                    top: 12px;
-                    left: 0;
-                    height: 28px;
-                    line-height: 28px;
-                    text-indent: 60px;
-                    font-size: 13px;
-                    font-weight: 600;
-                    color: #fff;
-                    letter-spacing:2px;
-                    text-transform: uppercase;
-                    padding-right: 12px;
-                    background-image: linear-gradient(to right, #02b3e4 0%, #02ccba 100%);
-                    &:after{
-                        position: absolute;
-                        content: '';
-                        top: 0;
-                        width: 0;
-                        height: 0;
-                        right: -16px;
-                        border-style: solid;
-                        border-width: 28px 16px 0 0;
-                        border-color: #02ccba transparent transparent transparent;
-                    }
-                }
-
-                h4{
-                    font-size: 28px;
-                    font-weight: 300;
-                    line-height: 36px;
-                    margin-bottom: 24px;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    color: #2e3d49;
-                }
-
-                >.desc{
-                    font-size: 14px;
-                    line-height: 24px;
-                    font-weight: 400;
-                    color: #525c65;
-                    text-align: justify;
-                }
-
-                .details{
-                    position: absolute;
-                    left: 60px;
-                    right: 60px;
-                    bottom: 0;
-                    height: 60px;
-                    border-top: 1px solid #dbe2e8;
-                    line-height: 60px;
-                    font-size: 13px;
-                    font-weight: 600;
-
-                    .text{
-                        float: left;
-                        color: #02b3e4;
-                        text-transform: uppercase;
-                        letter-spacing: 2px;
-                    }
-                    .time{
-                        color: #7d97ad;
-                        float: right;
-                        line-height: 60px;
-                    }
-                }
+        .course-detail-image{
+            width: 300px;
+            flex: none;
+            margin-right: 25px;
+            img{
+                width: 100%;
+                height: 100%;
+                background: #f1f1f1;
             }
         }
 
-        .contain-main{
+        .course-detail-infomation{
+            flex: auto;
+
+            .title{
+                font-size: 24px;
+                color: #333;
+                line-height: 30px;
+                margin: 10px 0;
+            }
+            .description{
+                font-size: 12px;
+                color: #666;
+                line-height: 20px;
+                height: 60px;
+                overflow: hidden;
+            }
+
+            .price{
+                font-size: 20px;
+                color: #ff5c00;
+                line-height: 30px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .course-detail-action{
             position: relative;
-            .main-aside{
-                position: absolute;
-                top: 60px;
-                right: 60px;
-                width: 320px;
-                height: 246px;
-                background-color: rgba(219,226,232,0.2);
+        }
+
+        .course-detail-btn{
+            height: 40px;
+            >a{
+                display: inline-block;
+                width: 125px;
+                height: 40px;
                 border-radius: 4px;
-                padding: 48px;
-                img{
-                    display: block;
-                    height: 36px;
-                }
-                .tips{
-                    font-size: 13px;
-                    line-height: 24px;
-                    letter-spacing:2px;
-                    text-transform: uppercase;
-                    font-weight: 600;
-                    color: #7d97ad;
-                    margin-bottom: 12px;
-                }
-                .small{
-                    font-size: 14px;
-                    line-height: 24px;
-                    font-weight: 400;
-                    color: #525c65;
-                }
-            }
-            .main-content{
-                width: 650px;
-                padding: 60px;
-                h4{
-                    font-size: 13px;
-                    line-height: 24px;
-                    letter-spacing:2px;
-                    text-transform: uppercase;
-                    font-weight: 600;
-                    color: #7d97ad;
-                    margin-bottom: 12px;
-                }
-                >.desc{
-                    font-size: 14px;
-                    line-height: 24px;
-                    font-weight: 400;
-                    color: #525c65;
-                    margin-bottom: 48px;
-                }
-                .content-part{
-                    >ul{
-                        list-style-type: none;
-                        >li{
-                            position: relative;
-                            border-left: 1px solid #dbe2e8;
-                            padding-left: 48px;
-                            padding-bottom: 40px;
-                            min-height: 216px;
+                background: #35b558;
+                color: #fff;
+                border: 1px solid #35b558;
+                font-size: 18px;
+                line-height: 38px;
+                transition: all .2s ease;
+                text-align: center;
 
-                            &:after{
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                content: '';
-                                width: 8px;
-                                height: 8px;
-                                border-radius: 50%;
-                                background-color: #02b3e4;
-                                transform: translateX(-50%);
-                            }
-
-                            .part{
-                                h5{
-                                    font-size: 18px;
-                                    font-weight: 600;
-                                    color: #2e3d49;
-                                    margin-bottom: 12px;
-                                }
-                                .desc{
-                                    font-size: 14px;
-                                    line-height: 24px;
-                                    font-weight: 400;
-                                    color: #525c65;
-                                    margin-bottom: 12px;
-                                }
-                                .link{
-                                    font-size: 13px;
-                                    font-weight: 600;
-                                    text-decoration: none;
-                                    color: #02b3e4;
-                                    letter-spacing: 1px;
-                                }
-                            }
-                        }
-                    }
+                &:hover{
+                    background: #fff;
+                    color: #35b558;
                 }
             }
         }
+
+        .course-detail-duration{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            font-size: 12px;
+            color: #666;
+        }
+    }
+}
+
+.course-catalog{
+    position: relative;
+    background: #fff;
+    padding: 30px;
+    margin-top: 30px;
+    box-shadow: 0px 1px 20px 0px rgba(46, 61, 73, 0.2);
+    border-radius: 8px;
+
+    .course-catalog-info{
+        border: 1px solid #e4e4e4;
+        padding-top: 30px;
+        border-bottom: 0;
+
+        .title{
+            border-left: 2px solid #35b558;
+            font-size: 16px;
+            color: #333;
+            font-weight: 500;
+            padding-left: 28px;
+            margin-left: -1px;
+            height: 30px;
+            line-height: 30px;
+            margin-bottom: 15px;
+        }
+
+        .description{
+            font-size: 12px;
+            line-height: 20px;
+            min-height: 40px;
+            margin: 0 30px;
+        }
+    }
+
+    .courser-chapter{
+        border: 1px solid #e4e4e4;
+        border-top: 0;
+
+        .chapter-title{
+            padding: 0 30px;
+            height: 40px;
+            line-height: 40px;
+            background: #f5f5f5;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .section-item,.homeworks-item{
+            padding: 0 45px;
+            line-height: 40px;
+            height: 40px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .link{
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #02b3e4;
+            letter-spacing: 1px;
+        }
+    }
+    
+    .task-section{
+        margin-top: 30px;
+
+        .title{
+            padding: 0 30px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            color: #333;
+            border-bottom: 1px solid #e4e4e4;
+        }
+
+        .task-item{
+            padding: 0 30px;
+            line-height: 40px;
+            height: 40px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .link{
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #02b3e4;
+            letter-spacing: 1px;
+        }
+
     }
 }
 
