@@ -38,7 +38,7 @@ export default {
 <style scoped lang="less">
     .banner-section{
         height: 440px;
-        background-color: rgba(255, 255, 255, .2);
+        background-color: #1c2228;
         background-image: url('./../../assets/images/banner-hero1.jpg');
         background-size: cover;
         margin-bottom: 20px;

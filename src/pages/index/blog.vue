@@ -3,17 +3,17 @@
         <div class="container">
             <ul>
                 <li>
-                    <a href="/blog/1">
+                    <a href="javascript:;">
                         <h3 class="title">兴趣 · 孵化计划</h3>
                     </a>
                 </li>
                 <li>
-                    <a href="/blog/1">
+                    <a href="javascript:;">
                         <h3 class="title">职业 · 新蕾计划</h3>
                     </a>
                 </li>
                 <li>
-                    <a href="/blog/1">
+                    <a href="javascript:;">
                         <h3 class="title">暑期 · 破壳计划</h3>
                     </a>
                 </li>
