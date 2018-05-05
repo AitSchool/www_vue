@@ -23,10 +23,14 @@ export default {
             this.$router.push({ name: 'index_page' })
             return
         }
-
-        axios.post(API.login, {
-            name: 'github',
-            code
+        console.log(API.login)
+        axios({
+            method: 'POST',
+            url: API.login,
+            data:{
+                name: 'github',
+                code
+            }
         })
         .then((response) =>{
             let token = response.data.token;
@@ -34,8 +38,9 @@ export default {
             window.location.href = "/"
         })
         .catch((error) =>{
-            console.log('登录失败')
-            this.$router.push({ name: 'index_page' })
+            alert('登录失败');
+            console.log(error,'登录失败')
+            // this.$router.push({ name: 'index_page' })
         });
     },
     data () {
