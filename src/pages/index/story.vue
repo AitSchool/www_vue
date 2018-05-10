@@ -23,16 +23,16 @@
                     <div class="item-image">
                         <img src="./../../assets/images/github_default_avatar.png">
                     </div>
-                    <p class="name">Emma Yang</p>
-                    <p class="desc">6岁开始编码。10岁时，奶奶阿尔茨海默症病情恶化，她决开发一款APP，取名“永恒”，是世界第一款帮助老年痴呆患者日常生活的APP。</p>
+                    <p class="name">林熙</p>
+                    <p class="desc">努力并不是为了证明自己多厉害，只是对自己生活方式的一种选择，每个人都可以通过自己的努力，去决定自己生活的样子。</p>
                     <a class="add-one" href="javascript:;">加入孵化计划，和 ta 做一样学编程</a>
                 </li>
                 <li>
                     <div class="item-image">
                         <img src="./../../assets/images/github_default_avatar.png">
                     </div>
-                    <p class="name">汪正洋</p>
-                    <p class="desc">8岁编码，全国最小黑客，经常寻找各种网站的漏洞，进而训练自己的电脑技术。学习网络技术的目的是帮助网站修补完善，希望自己的技术能帮助到别人。</p>
+                    <p class="name">陈剑涛</p>
+                    <p class="desc">学着学着，兴趣越来越浓厚。被任务式学习所吸引，能一面学习一面输出作品，又能认识一群志同道合的战友，前行路上不再孤单。</p>
                     <a class="add-one" href="javascript:;">加入孵化计划，和 ta 做一样学编程</a>
                 </li>
             </ul>

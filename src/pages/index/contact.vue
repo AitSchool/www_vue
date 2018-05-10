@@ -4,14 +4,22 @@
             <img class="hero-octonaut" src="./../../assets/images/github_octonaut.svg">
             <div class="about-us">
                 <h3>关于我们</h3>
-                <div class="desc">我们的愿景，是把高性价比、引人入胜、卓有成效的高质量内容，带到全世界每一个人的身边。我们希望帮助来到的学习者，成长为被行业所需要的抢手人才，拥有最好的知识和更远大的前程。</div>
+                <div class="desc">
+                    我们相信开源的力量，相信聚群的力量，<br>
+                    我们憧憬着用最彻底的方式做出我们心中最理想教育模式。<br>
+                    从心出发，未来快乐！<br>
+                    <a target="_blank" href="https://shimo.im/docs/dBTdo7hVHFAJz9dn" 
+                        style="font-size: 12px;line-height: 50px;color: #02b3e4;" 
+                    >
+                        了解更多 >>
+                    </a>
+                </div>
             </div>
             <div class="touch-us">
                 <h3>联系我们</h3>
                 <ul>
-                    <li><span>电话</span>1351111111</li>
-                    <li><span>微信</span>1351111111</li>
-                    <li><span>地址</span>广州市增城区健生西路19号二层</li>
+                    <li><span>电话</span>13502222677</li>
+                    <li><span>地址</span>广州增城健生西路19号扎克斯宇宙中心</li>
                 </ul>
             </div>
             <div class="employment">

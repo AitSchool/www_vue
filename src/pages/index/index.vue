@@ -4,7 +4,6 @@
         <blog></blog>
         <plan :plans="plans" :myplan="myplan"></plan>
         <serve></serve>
-        <intro></intro>
         <story></story>
         <contact></contact>
     </div>

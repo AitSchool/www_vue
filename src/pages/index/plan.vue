@@ -117,6 +117,8 @@ export default {
     }
 
     .card-item{
+        position: relative;
+        box-sizing: border-box;
         vertical-align: top;
         position: relative;
         display: inline-block;
@@ -129,6 +131,17 @@ export default {
         box-shadow: 5px 5px 25px 0px rgba(46,61,73,0.2);
         transition: box-shadow 0.3s ease;
         font-size: 12px;
+
+        &:before {
+            width: 23px;
+            height: 11px;
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            background-image: url('./../../assets/images/index/index_zhiye_protag.png');
+            background-size: 23px 11px;
+        }
 
         &:hover{
             box-shadow: 2px 4px 8px 0px rgba(46,61,73,0.2);

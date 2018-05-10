@@ -5,9 +5,9 @@
                 <div class="banner-info">
                     <h1 class="title">AitSchool -- 技术成就梦想之美</h1>
                     <h2 class="sub-title">互联网核<span class="opacity">心</span>技能进阶</h2>
-                    <p class="desc">相比于“获取知识”，我们更关注你切实获得<span class="yellow">“能力提升”</span></p>
+                    <p class="desc">相比于<span class="yellow">“获取知识”</span>，我们更关注你切实获得<span class="yellow">“能力提升”</span></p>
                     <div class="banner-image">
-                        <a href="javascript:;">
+                        <a target="_blank" href="https://shimo.im/docs/wgAgkqgGrFYO2ky7">
                             <img src="./../../assets/images/learn_promotion.png">
                         </a>
                     </div>
@@ -64,7 +64,7 @@ export default {
                 text-align: center;
                 font-weight: 300;
                 letter-spacing: 2px;
-                opacity: .8;
+                opacity: .9;
                 transform: scale(.8);
             }
 
@@ -99,7 +99,7 @@ export default {
             }
 
             .banner-image{
-                margin-top: 30px;
+                margin-top: 20px;
             }
         }
     }

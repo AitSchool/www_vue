@@ -3,18 +3,18 @@
         <div class="container">
             <ul>
                 <li>
-                    <a href="javascript:;">
-                        <h3 class="title">兴趣 · 孵化计划</h3>
+                    <a target="_blank" href="https://shimo.im/docs/nwDduoDZ29o6Alc7">
+                        <h3 class="title">兴趣 · 探月计划</h3>
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:;">
-                        <h3 class="title">职业 · 新蕾计划</h3>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
+                    <a target="_blank" href="https://shimo.im/docs/d9NB9xlSo2IOvCzI">
                         <h3 class="title">暑期 · 破壳计划</h3>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://shimo.im/docs/wgAgkqgGrFYO2ky7">
+                        <h3 class="title">职业 · 新蕾计划</h3>
                     </a>
                 </li>
             </ul>
@@ -52,27 +52,28 @@ export default {
         box-shadow: 5px 5px 25px 0px rgba(46,61,73,0.2);
         transition: box-shadow 0.3s ease;
         margin-right: 15px;
-        background-size: cover;
+        background-size: contain;
+        background-position: center -10px;
+        background-repeat: no-repeat;
+        background-color: #f4f4f4;
+        overflow: hidden;
 
         &:nth-child(1){
-            background-image: url('./../../assets/images/index/blogad_1.jpg');
+            background-image: url('./../../assets/images/index/bluesea_1.png');
         }
 
 
         &:nth-child(2){
-            background-image: url('./../../assets/images/index/blogad_1.jpg');
+            background-image: url('./../../assets/images/index/bluesea_2.png');
         }
 
 
         &:nth-child(3){
-            background-image: url('./../../assets/images/index/blogad_1.jpg');
+            background-image: url('./../../assets/images/index/bluesea_3.png');
         }
 
         &:hover{
             box-shadow: 2px 4px 8px 0px rgba(46,61,73,0.2);
-            a{
-                background: transparent;
-            }
         }
 
         &:nth-child(3n){
@@ -83,8 +84,6 @@ export default {
             display: block;
             width: 100%;
             height: 120px;
-            background: rgba(0,0,0,.2);
-            transition: all .2s ease;
         }
 
         .title {
@@ -92,12 +91,12 @@ export default {
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(0,0,0,.5);
             font-size: 14px;
-            color: #fff;
+            color: #333;
             height: 30px;
             line-height: 30px;
             letter-spacing: 2px;
+            transition: all .2s ease;
         }
 
     }
