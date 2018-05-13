@@ -1,7 +1,38 @@
 <template>
     <div class="section_page">
         <Loading v-if="!section.name"></Loading>
-        <div class="container" v-if="section.name">
+        <div class="section-container" v-if="section.name">
+            <div class="sidebar">
+                <ul class="sidebar-links">
+                    <li>
+                        <div class="sidebar-group">
+                            <p class="sidebar-heading"><span>{{course.name}}</span></p>
+                            <ul class="sidebar-group-items">
+                                <li v-for="chapter in course.chapters">
+                                    <a href="javascript:;" :class="['sidebar-link',(chapter.id == chapter_id) ? 'active' : '']">{{chapter.name}}</a>
+                                    <ul class="sidebar-sub-headers">
+                                        <li class="sidebar-sub-header" v-for="section in chapter.sections">
+                                            <router-link :to="{ name:'section_page',params: { 
+                                                id: course.id, 
+                                                chapter: chapter.id, 
+                                                section: section.id }}" 
+                                                :class="['sidebar-link',(section.id == section_id) ? 'active' : '']"
+                                            >{{section.name}}</router-link>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="mainer">
+                <div class="content" v-if="section.name">
+                    <Marked :content="section.content || '暂无内容'"></Marked>
+                </div>
+            </div>
+        </div>
+        <div class="container" v-if="section.name && false">
             <div class="navigation-contain">
                 <h3 id="course_id">{{course.name}}</h3>
                 <ul class="chapter_list">
@@ -26,7 +57,6 @@
                 </ul>
             </div>
             <div class="section-contain" v-if="section.name">
-                <!-- <h4>{{section.name}}</h4> -->
                 <div class="text-content">
                     <Marked :content="section.content || '暂无内容'"></Marked>
                 </div>
@@ -64,74 +94,13 @@ export default {
     data () {
         return {
             section: {
-                naem:'',
+                name:'',
                 content:'',
             },
             course: {},
             course_id: 0,
             chapter_id: 0,
             section_id: 0,
-            courseInfo:{
-                id: 11,
-                status: 0, //0 不能学习；1 已下单但没付款，不能学习；2 已付款或者免费，可以学习
-                title:'HTML & CSS',
-                description: 'HTML，是我们所有信息、资源流的集合与标记，如同树干与树叶的关系，告诉我们页面有什么，在哪里。就其核心来说, 是由元素组成的语言，为文本赋予它在一个文档中不同的意义, 结构化文档为逻辑区块 并且可以嵌入图片影像等资源到一个页面中。',
-                duration: '20 小时',
-                imageUrl: 'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170704/4cdffb64-3d45-49f3-84c3-60f2349a25c2.png',
-                task: '写一个属于自己的个人网页',
-                task_score: null, // 完成任务后的评分
-                ready: '我们建议有对Web有一定的了解，可以在谷歌上搜索，以及（最重要的）坚持向前推进的决心！',
-                chapters:[{
-                    id:1,
-                    title:'第一章名称',
-                    homework:'下载体验所有浏览器',
-                    homework_score: 'A', //作业是否完成,完成有评分，否则为null
-                    sections:[{
-                        id: 1,
-                        title: '什么是因特网',
-                        study_status:0, //0 未学习过，1，学习过
-                    },{
-                        id: 2,
-                        title: '什么是万维网',
-                        study_status:0,
-                    },{
-                        id: 3,
-                        title: 'web 浏览器',
-                        study_status:0,
-                    },{
-                        id: 4,
-                        title: '编程语言是什么？',
-                        study_status:0,
-                    }]
-                },{
-                    id:2,
-                    title:'第二章名称',
-                    homework:'下载体验所有浏览器',
-                    homework_score: null,
-                    sections:[{
-                        id: 1,
-                        title: '什么是因特网',
-                        study_status:0,
-                    },{
-                        id: 2,
-                        title: '什么是万维网',
-                        study_status:0,
-                    },{
-                        id: 3,
-                        title: 'web 浏览器',
-                        study_status:0,
-                    },{
-                        id: 4,
-                        title: '编程语言是什么？',
-                        study_status:0,
-                    }]
-                }]
-            },
-            sectionInfo: {
-                id: 2,
-                title: '什么是因特网',
-                content: mock.content
-            }
         }
     },
     watch: {
@@ -213,6 +182,76 @@ export default {
     padding-top: 20px;
     padding-bottom: 70px;
 }
+
+.section-container{
+    display: flex;
+    //width: 1200px;
+    //margin: 0 auto;
+    .sidebar{
+        font-size: 15px;
+        background-color: #fff;
+        width: 20rem;
+        z-index: 10;
+        margin: 0;
+        top: 3.6rem;
+        left: 0;
+        bottom: 0;
+        box-sizing: border-box;
+        border-right: 1px solid #eaecef;
+        overflow-y: auto;
+
+        .sidebar-links {
+            padding: 1.5rem 0;
+        }
+
+        .sidebar-heading {
+            color: #2c3e50;
+            transition: color .15s ease;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 700;
+            padding-left: 1.5rem;
+            margin-top: 0;
+            margin-bottom: .5rem;
+        }
+
+        .sidebar-link {
+            font-weight: 400;
+            display: inline-block;
+            color: #666;
+            border-left: .25rem solid transparent;
+            padding: .35rem 1rem .35rem 1.25rem;
+            line-height: 1.4;
+            width: 100%;
+            box-sizing: border-box;
+
+            &.active {
+                color: #02b3e4;
+                border-left-color: #02b3e4;
+            }
+        }
+
+        .sidebar-sub-headers {
+            padding-left: 1rem;
+            font-size: .95em;
+
+            .sidebar-link {
+                font-weight: 400;
+                padding-top: .25rem;
+                padding-bottom: .25rem;
+                border-left: none;
+            }
+        }
+    }
+    .mainer{
+        .content{
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 2rem 2.5rem;
+        }
+    }
+}
+
 .navigation-contain{
     display: inline-block;
     width: 230px;

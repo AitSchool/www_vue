@@ -36,7 +36,6 @@ export default {
     },
     data () {
         return {
-            // github_login_url: 'https://github.com/login/oauth/authorize?client_id=0afe04184c7f3628940d',
             github_login_url: 'https://github.com/login/oauth/authorize?client_id=0afe04184c7f3628940d&redirect_uri=https%3A%2F%2Fwww.aitschool.com%2Flogin%2Foauth%2Fcallback%2Fgithub&scope=user%3Aemail%2Crepo%2Cuser%2Cgist&response_type=code'
         }
     }
