@@ -153,7 +153,7 @@ export default {
                 font-size: 16px;
                 color:#35b558;
                 line-height: 22px;
-                font-weight: 300;
+                font-weight: 500;
                 padding-top: 30px;
             }
 
