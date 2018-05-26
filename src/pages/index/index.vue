@@ -1,7 +1,6 @@
 <template>
     <div class="index_page">
         <banner></banner>
-        <blog></blog>
         <plan :plans="plans" :myplan="myplan"></plan>
         <serve></serve>
         <story></story>
@@ -15,7 +14,6 @@ import storage from '@/utils/storage.js';
 import API from '@/config/api.js';
 
 import banner from './banner'
-import blog   from './blog'
 import plan   from './plan'
 import serve  from './serve'
 import intro  from './intro'
@@ -83,7 +81,6 @@ export default {
     },
     components: {
         banner,
-        blog,
         plan,
         serve,
         intro,

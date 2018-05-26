@@ -5,15 +5,14 @@
             <ul class="serve-list">
                 <li>
                     <i>兴趣班</i>
-                    <h3 class="title">孵化计划</h3>
+                    <h3 class="title">探月计划</h3>
                     <p class="title-next">编程教育，从小抓起</p>
                     <p class="desc">
                         门栏高？学不会？电脑只会玩游戏？<br>
                         系统的学习，逐步进阶，小小极客诞生记
                     </p>
                     <div class="btn-container">
-                    <a href="javascript:;" target="_blank">了解更多</a>
-                    <a class="apply" href="javascript:;" target="_blank">免费试听</a>
+                    <a href="https://shimo.im/docs/nwDduoDZ29o6Alc7" target="_blank">了解更多</a>
                     </div>
                 </li>
 
@@ -26,8 +25,7 @@
                         5个月小白变大牛，月薪8000起
                     </p>
                     <div class="btn-container">
-                    <a href="javascript:;" target="_blank">了解更多</a>
-                    <a class="apply" href="javascript:;" target="_blank">免费试听</a>
+                    <a href="https://shimo.im/docs/wgAgkqgGrFYO2ky7" target="_blank">了解更多</a>
                     </div>
                 </li>
 
@@ -40,8 +38,7 @@
                         在一个好玩的地方，把想法实现
                     </p>
                     <div class="btn-container">
-                    <a href="javascript:;" target="_blank">了解更多</a>
-                    <a class="apply" href="javascript:;" target="_blank">免费试听</a>
+                    <a href="https://shimo.im/docs/d9NB9xlSo2IOvCzI" target="_blank">了解更多</a>
                     </div>
                 </li>
 
@@ -151,7 +148,7 @@ export default {
 
             .title{
                 font-size: 16px;
-                color:#35b558;
+                color:#02b3e4;
                 line-height: 22px;
                 font-weight: 500;
                 padding-top: 30px;
@@ -189,8 +186,8 @@ export default {
                     }
                     
                     &.apply{
-                        border:1px solid #35b558;
-                        color:#35b558;
+                        border:1px solid #02b3e4;
+                        color:#02b3e4;
                     }
 
                     &.ready{
@@ -199,8 +196,8 @@ export default {
 
 
                     &:hover{
-                        border:1px solid #35b558;
-                        background: #35b558;
+                        border:1px solid #02b3e4;
+                        background: #02b3e4;
                         color: #fff;
 
                         &.ready{
