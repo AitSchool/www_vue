@@ -1,6 +1,7 @@
 <template>
     <div class="index_page">
         <banner></banner>
+        <blog></blog>
         <plan :plans="plans" :myplan="myplan"></plan>
         <serve></serve>
         <story></story>
@@ -14,6 +15,7 @@ import storage from '@/utils/storage.js';
 import API from '@/config/api.js';
 
 import banner from './banner'
+import blog from './blog'
 import plan   from './plan'
 import serve  from './serve'
 import intro  from './intro'
@@ -41,7 +43,7 @@ export default {
     methods: {
         getPlan:function (){
             // 获取计划列表
-            let plans = storage.get('plans');
+            let plans = storage.get('exp_plans');
             if(plans){
                 this.plans = plans
                 return
@@ -54,7 +56,7 @@ export default {
             .then( (response)=> {
                 let plans = response.data;
                 this.plans = plans;
-                storage.set('plans',plans)
+                storage.set('plans',plans,600*24);
             })
             .catch( (error)=> {
                 console.log(error)
@@ -62,7 +64,6 @@ export default {
         },
         getMyPlan:function(){
             // 获取用户购买状态
-            
             this.token && axios({
                 method: 'get',
                 url: API.plan + '/my',
@@ -81,6 +82,7 @@ export default {
     },
     components: {
         banner,
+        blog,
         plan,
         serve,
         intro,

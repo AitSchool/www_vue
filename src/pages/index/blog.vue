@@ -55,7 +55,7 @@ export default {
         background-size: contain;
         background-position: center -10px;
         background-repeat: no-repeat;
-        background-color: #f4f4f4;
+        background-color: #f5f5f5;
         overflow: hidden;
 
         &:nth-child(1){

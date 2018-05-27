@@ -133,7 +133,7 @@ export default {
 
 <style scoped lang="less">
 .plan_page{
-
+    padding-bottom: 170px;
     .intro-section{
         padding: 72px 0;
 
