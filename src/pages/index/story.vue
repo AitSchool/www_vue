@@ -1,6 +1,6 @@
 <template>
     <div class="story-section">
-        <div class="container">
+        <div class="container-lg">
             <h2>成长故事</h2>
             <ul class="story-list">
                 <li>
@@ -45,7 +45,7 @@ export default {
     name: 'index_story',
     data () {
         return {
-            
+
         }
     },
 }
@@ -55,16 +55,19 @@ export default {
 .story-section{
     padding-top: 20px;
     h2{
-        margin-top: 10px;
-        line-height: 60px;
-        height: 60px;
-        text-align: left;
-        font-size: 18px;
-        color:#333;
+        padding: 3rem 0;
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 400;
+        line-height: 2.25rem;
+        color: #02b3e4;
     }
 
     .story-list{
         font-size: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
 
         li{
             position: relative;
@@ -77,7 +80,12 @@ export default {
             border-radius: 4px;
             border-top: 6px solid #02b3e4;
             text-align: center;
-            
+            box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
+
+            &:hover{
+                box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+            }
+
             &:last-child{
                 margin-right: 0;
             }
@@ -117,7 +125,7 @@ export default {
                     transform: translateY(0);
                 }
             }
-            
+
             .add-one{
                 position: absolute;
                 bottom: 0;

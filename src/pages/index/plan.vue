@@ -1,19 +1,31 @@
 <template>
-    <div class="plan-section container" v-show="plans.length">
-        <h2>职业计划</h2>
-        <div class="container">
-            <div class="card-item"  v-for="plan in plans" >
-                <!-- 状态 -->
-                <i class="tag red" v-if="plan.status === 1 && myplan.includes(plan.id)">继续学习</i>
-                <i class="tag" v-else-if="plan.status === 1">马上学习</i>
-                <i class="tag gray" v-else="plan.status === 2">敬请期待</i>
-
-                <!-- 信息 -->
-                <img class="card-img" :src="plan.image_path" :alt="plan.name" :title="plan.name">
-                <h3>{{plan.name}}</h3>
+    <div class="plan-section" v-show="plans.length">
+        <div class="container-lg">
+            <h2>学习计划</h2>
+            <div class="card-list">
+              <div class="card-item"  v-for="(plan, index ) in plans" >
+                <div class="card-item-header"
+                  :style="{ backgroundImage: 'url('+backgroundImage[index].url+')' }">
+                  <div class="card-header-mask" :style="{ backgroundColor: backgroundImage[index].color }">
+                    <h3 class="card-header-title">{{plan.name}}</h3>
+                  </div>
+                </div>
+                <div class="card-item-body">
+                  <!-- 信息 -->
+                  <img class="card-item-img" :src="plan.image_path" :alt="plan.name" :title="plan.name">
+                  <!-- 状态 -->
+                  <p class="card-item-desc">
+                    <span class="tag red" v-if="plan.status === 1 && myplan.includes(plan.id)">继续学习</span>
+                    <span class="tag" v-else-if="plan.status === 1">马上学习</span>
+                    <span class="tag gray" v-else="plan.status === 2">敬请期待</span>
+                  </p>
+                </div>
 
                 <!-- 链接 -->
-                <router-link v-if="plan.status === 1" class="link" :to="{ name:'plan_page',params: { id: plan.id}}" ></router-link>
+                <router-link v-if="plan.status === 1" class="btn-link" :to="{ name:'plan_page',params: { id: plan.id}}" >
+                  立即加入
+                </router-link>
+              </div>
             </div>
         </div>
     </div>
@@ -23,8 +35,8 @@
 
 export default {
     name: 'index_plan',
-    monted () {
-        console.log(this.plan)
+    mounted () {
+        console.log(this.plans,'xxx')
     },
     props: {
         plans: {
@@ -43,62 +55,111 @@ export default {
                 name:'WEB工程师',
                 status:1,
                 self_status:1,
-                image_path:'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170704/4cdffb64-3d45-49f3-84c3-60f2349a25c2.png'
+                image_path:'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170704/4cdffb64-3d45-49f3-84c3-60f2349a25c2.png',
+                background_image: 'https://d125fmws0bore1.cloudfront.net/assets/shared/nd-cards/nd001@2x-3cc1a1253388bb5439fa3e2f53dbb73b510ddb4c94ab7b2819c2a3f75c0e98ac.jpg',
+                background_color: 'rgba(255,162,52,.8)',
+            }],
+            backgroundImage:[{
+              name: '无人驾驶入门',
+              url:'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd113.jpg',
+              color: 'rgba(2,179,228,.8)',
             },{
-                id:2,
-                name:'PHP工程师',
-                status:1,
-                self_status:0,
-                image_path:'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170704/914408a9-afc8-4aaf-8ff3-f7a2497bfeba.png'
+              name: '人工智能编程基础',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd089.jpg',
+              color: 'rgba(2,204,186,.8)'
             },{
-                id:3,
-                name:'Android工程师',
-                status:2,
-                self_status:0,
-                image_path:'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170704/6227c34f-5efd-4df2-911d-91654cb0691c.png'
+              name: '机器学习工程师',
+              url: 'https://d125fmws0bore1.cloudfront.net/assets/shared/nd-cards/nd009@2x-9f2d8b6e86c96a3140f3a9aac20869f374bdbb6481acad24cefd5db56dc8c999.jpg',
+              color: 'rgba(169,81,237,.8)'
             },{
-                id:4,
-                name:'iOS工程师',
-                status:2,
-                self_status:0,
-                image_path:'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170704/8950bb99-3b4e-4e1e-a0d4-ffbf04590c15.png'
+              name: '自然语言处理工程师',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd892.jpg',
+              color: 'rgba(125,151,173,.8)'
             },{
-                id:5,
-                name:'微信小程序工程师',
-                status:2,
-                self_status:0,
-                image_path:'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170704/f1f87ca2-3d23-4220-8043-52394a190b89.png'
+              name: '计算机视觉工程师',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd891.jpg',
+              color: 'rgba(255,162,52,.8)'
             },{
-                id:6,
-                name:'Python工程师',
-                status:2,
-                self_status:0,
-                image_path:'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170704/5e981faa-abed-4974-a127-d616c8076328.png'
+              name: '深度学习',
+              url: 'https://d125fmws0bore1.cloudfront.net/assets/shared/nd-cards/nd101@2x-5ed1d6680baf0bb53f9286c5cda65c7c8cc0072538eaa5f0dcfcd9dc97724c77.jpg',
+              color: 'rgba(255,84,131,.8)'
             },{
-                id:7,
-                name:'Go语音工程师',
-                status:2,
-                self_status:0,
-                image_path:'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170704/6a6c62c4-a823-44f8-942c-0a0e0e256b17.png'
+              name: '数据分析师',
+              url: 'https://d125fmws0bore1.cloudfront.net/assets/shared/nd-cards/nd002@2x-6b20bbee6ff1e6cf86edeac865dd857421588005b35d8d30a2ebb2a87f078127.jpg',
+              color: 'rgba(2,204,186,.8)'
             },{
-                id:8,
-                name:'大数据平台研发工程师',
-                status:2,
-                self_status:0,
-                image_path:'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170808/41f60ad5-db13-416e-ad37-08495dbc0377.png'
+              name: '数据科学家',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd025.jpg',
+              color: 'rgba(169,81,237,.8)'
             },{
-                id:9,
-                name:'机器学习工程师',
-                status:2,
-                self_status:0,
-                image_path:'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170929/816d64ca-6d0d-4507-b640-c9cd5dcd4bc4.png'
+              name: '商业数据分析',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd100-cn.jpg',
+              color: 'rgba(125,151,173,.8)'
             },{
-                id:10,
-                name:'JAVA工程师',
-                status:2,
-                self_status:0,
-                image_path:'http://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-/20170704/ad309043-9e84-4535-b85e-7b52ac4e3b2b.png'
-            }]
+              name: '前端工程师',
+              url: 'https://d125fmws0bore1.cloudfront.net/assets/shared/nd-cards/nd001@2x-3cc1a1253388bb5439fa3e2f53dbb73b510ddb4c94ab7b2819c2a3f75c0e98ac.jpg',
+              color: 'rgba(255,162,52,.8)'
+            },{
+              name: '无人驾驶工程师',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd013.jpg',
+              color: 'rgba(255,84,131,.8)'
+            },{
+              name: '人工智能工程师',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd898.jpg',
+              color: 'rgba(2,179,228,.8)'
+            },{
+              name: 'Python 编程入门',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd000.jpg',
+              color: 'rgba(169,81,237,.8)'
+            },{
+              name: '微信小程序开发',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd666-cn.jpg',
+              color: 'rgba(125,151,173,.8)'
+            },{
+              name: 'Java 入门',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd301-cn-basic.png',
+              color: 'rgba(255,162,52,.8)'
+            },{
+              name: '产品设计冲刺方法',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd201.jpg',
+              color: 'rgba(255,84,131,.8)'
+            },{
+              name: 'Google AdWords',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd124.jpg',
+              color: 'rgba(2,204,186,.8)'
+            },{
+              name: '互联网营销',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd018-cn.jpg',
+              color: 'rgba(2,179,228,.8)'
+            },{
+              name: '机器人开发',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd209.jpg',
+              color: 'rgba(2,204,186,.8)'
+            },{
+              name: '飞行汽车开发',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd787.jpg',
+              color: 'rgba(169,81,237,.8)'
+            },{
+              name: 'React 开发者',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd019.jpg',
+              color: 'rgba(125,151,173,.8)'
+            },{
+              name: '全栈开发工程师',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd004.jpg',
+              color: 'rgba(255,162,52,.8)'
+            },{
+              name: '虚幻引擎 VR 游戏开发',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd117.jpg',
+              color: 'rgba(255,84,131,.8)'
+            },{
+              name: 'VR 开发者',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd017.jpg',
+              color: 'rgba(2,204,186,.8)'
+            },{
+              name: '区块链工程师',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd1309.jpg',
+              color: 'rgba(169,81,237,.8)'
+            },]
         }
     },
 }
@@ -109,90 +170,131 @@ export default {
     font-size: 0;
 
     h2{
-        margin-top: 10px;
-        height: 60px;
-        font-size: 18px;
-        line-height: 60px;
-        color: #333;
+      padding-top: 3rem;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 2.25rem;
+      color: #02b3e4;
+    }
+
+    .card-list{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
     }
 
     .card-item{
+        height: 360px;
+        width: 348px;
+        text-align: left;
         position: relative;
-        box-sizing: border-box;
-        vertical-align: top;
-        position: relative;
-        display: inline-block;
-        margin-right: 10px;
-        padding-top: 15px;
-        text-align: center;
-        height: 150px;
-        width: 192px;
         background: #fff;
-        box-shadow: 5px 5px 25px 0px rgba(46,61,73,0.2);
-        transition: box-shadow 0.3s ease;
-        font-size: 12px;
-
-        &:before {
-            width: 23px;
-            height: 11px;
-            content: '';
-            position: absolute;
-            top: 6px;
-            left: 6px;
-            background-image: url('./../../assets/images/index/index_zhiye_protag.png');
-            background-size: 23px 11px;
-        }
+        border-radius: .375rem;
+        transition: all .3s ease;
+        margin-top: 3rem;
+        overflow: hidden;
+        box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
 
         &:hover{
-            box-shadow: 2px 4px 8px 0px rgba(46,61,73,0.2);
+          box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
         }
+    }
 
-        &:nth-child(5n){
-            margin-right: 0;
-        }
-        &:nth-child(n+6){
-            margin-top: 10px;
-        }
-        
-        img{
-            width: 160px;
-            height: 96px;
-        }
+    .card-item-header{
+      position: relative;
+      height: 156px;
+      border-top-left-radius: .375rem;
+      border-top-right-radius: .375rem;
+      overflow: hidden;
+      background-size: cover;
+      background-image: url('https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd1309.jpg');
 
-        h3{
-            margin-top: 10px;
-            font-size: 12px;
-            color: #333;
-        }
+      .card-header-mask{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(169,81,237,.8);
+      }
+
+      .card-header-title{
+        font-weight: 400;
+        padding-top: 2.5em;
+        padding-left: 1.5em;
+        color: #fff;
+        font-size: 1.5rem;
+        line-height: 2.25rem;
+      }
+    }
+
+    .card-item-body{
+      position: relative;
+      padding: 24px 32px;
+
+      &:before {
+          width: 23px;
+          height: 11px;
+          content: '';
+          position: absolute;
+          top: 6px;
+          right: 6px;
+          background-image: url('./../../assets/images/index/index_zhiye_protag.png');
+          background-size: 23px 11px;
+      }
+
+      .card-item-img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: .2;
+        z-index: 0;
+      }
+
+      .card-item-desc{
+        position: relative;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        line-height: 1.75rem;
+        color: #525c65;
+        font-weight: 400;
 
         .tag{
-            display: inline-block;
-            width: 60px;
-            height: 18px;
-            position: absolute;
-            top: -2px;
-            right: 0;
-            background: #02b3e4;
-            text-align: center;
-            line-height: 18px;
-            font-size: 12px;
-            font-style:normal;
-            color: #fff;
-            &.gray{
-                background: rgba(0, 0, 0, 0.4);
-            }
-            &.red{
-                background: #ff5483;
-            }
+          display: inline-block;
+          background: #02b3e4;
+          color: #fff;
+          padding: 0 1rem;
+          vertical-align: middle;
+          &.gray{
+            background: rgba(0, 0, 0, 0.4);
+          }
+          &.red{
+            background: #ff5483;
+          }
         }
+      }
+    }
 
-        .link{
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-        }
+    .btn-link{
+      position: relative;
+      display: block;
+      margin: 40px auto 0;
+      text-align: center;
+      background-color: #02b3e4;
+      color: #fff;
+      width: 150px;
+      height: 40px;
+      font-size: 1rem;
+      line-height: 40px;
+      border-radius: 4px;
+      vertical-align: middle;
+      transition: all .2s ease;
+      &:hover{
+        opacity: .8;
+        font-size: 2rem;
+      }
     }
 
 }

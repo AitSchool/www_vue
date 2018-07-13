@@ -1,7 +1,6 @@
 <template>
     <div class="index_page">
         <banner></banner>
-        <blog></blog>
         <plan :plans="plans" :myplan="myplan"></plan>
         <serve></serve>
         <story></story>
@@ -15,7 +14,6 @@ import storage from '@/utils/storage.js';
 import API from '@/config/api.js';
 
 import banner from './banner'
-import blog from './blog'
 import plan   from './plan'
 import serve  from './serve'
 import intro  from './intro'
@@ -82,7 +80,6 @@ export default {
     },
     components: {
         banner,
-        blog,
         plan,
         serve,
         intro,
@@ -94,6 +91,17 @@ export default {
 
 <style scoped lang="less">
 .index_page{
-    background: #f5f5f5;
+  &:before{
+    content: '';
+    width: 100%;
+    height: 660px;
+    z-index: -1000;
+    background: linear-gradient(160deg,#02ccba,#aa7ecd);
+    transform-origin: left bottom;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: skew(0deg,-15deg);
+  }
 }
 </style>
