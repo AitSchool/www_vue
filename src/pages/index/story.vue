@@ -16,7 +16,7 @@
                         <img src="./../../assets/images/github_default_avatar.png">
                     </div>
                     <p class="name">董一</p>
-                    <p class="desc">留美本科，就职于500强金融外企。被互联网技术发展前景所吸引，零基础投身于编程学习，希望能把想法实现，开发一个技术金融计算的产品。Cool ～ 666</p>
+                    <p class="desc">留美本科，就职于500强金融外企。被互联网技术发展前景所吸引，零基础投身于编程学习，希望能把想法实现。</p>
                     <a class="add-one" href="javascript:;">加入新蕾计划，和 ta 做同学</a>
                 </li>
                 <li>
@@ -53,7 +53,7 @@ export default {
 
 <style scoped lang="less">
 .story-section{
-    padding-top: 20px;
+    padding-bottom: 60px;
     h2{
         padding: 3rem 0;
         text-align: center;
@@ -73,7 +73,7 @@ export default {
             position: relative;
             vertical-align: top;
             display: inline-block;
-            width: 242px;
+            width: 20%;
             height: 381px;
             margin-right: 10px;
             background: #fff;
@@ -140,7 +140,6 @@ export default {
                 transition: all .2s ease;
             }
         }
-
     }
 }
 </style>

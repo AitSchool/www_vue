@@ -2,6 +2,7 @@
     <div class="index_page">
         <banner></banner>
         <plan :plans="plans" :myplan="myplan"></plan>
+        <advangate></advangate>
         <serve></serve>
         <story></story>
         <contact></contact>
@@ -15,8 +16,8 @@ import API from '@/config/api.js';
 
 import banner from './banner'
 import plan   from './plan'
+import advangate from './advangate';
 import serve  from './serve'
-import intro  from './intro'
 import story  from './story'
 import contact from './contact'
 
@@ -81,8 +82,8 @@ export default {
     components: {
         banner,
         plan,
+        advangate,
         serve,
-        intro,
         story,
         contact
     }

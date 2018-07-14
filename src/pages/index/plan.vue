@@ -27,6 +27,9 @@
                 </router-link>
               </div>
             </div>
+            <div class="more-plan">
+              <a href="javascript:;">查看全部纳米学位项目<span class="icon__arrow--white"></span></a>
+            </div>
         </div>
     </div>
 </template>
@@ -36,7 +39,7 @@
 export default {
     name: 'index_plan',
     mounted () {
-        console.log(this.plans,'xxx')
+
     },
     props: {
         plans: {
@@ -60,6 +63,18 @@ export default {
                 background_color: 'rgba(255,162,52,.8)',
             }],
             backgroundImage:[{
+              name: '前端工程师',
+              url: 'https://d125fmws0bore1.cloudfront.net/assets/shared/nd-cards/nd001@2x-3cc1a1253388bb5439fa3e2f53dbb73b510ddb4c94ab7b2819c2a3f75c0e98ac.jpg',
+              color: 'rgba(255,162,52,.8)'
+            },{
+              name: '自然语言处理工程师',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd892.jpg',
+              color: 'rgba(125,151,173,.8)'
+            },{
+              name: '微信小程序开发',
+              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd666-cn.jpg',
+              color: 'rgba(125,151,173,.8)'
+            },{
               name: '无人驾驶入门',
               url:'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd113.jpg',
               color: 'rgba(2,179,228,.8)',
@@ -71,10 +86,6 @@ export default {
               name: '机器学习工程师',
               url: 'https://d125fmws0bore1.cloudfront.net/assets/shared/nd-cards/nd009@2x-9f2d8b6e86c96a3140f3a9aac20869f374bdbb6481acad24cefd5db56dc8c999.jpg',
               color: 'rgba(169,81,237,.8)'
-            },{
-              name: '自然语言处理工程师',
-              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd892.jpg',
-              color: 'rgba(125,151,173,.8)'
             },{
               name: '计算机视觉工程师',
               url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd891.jpg',
@@ -96,10 +107,6 @@ export default {
               url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd100-cn.jpg',
               color: 'rgba(125,151,173,.8)'
             },{
-              name: '前端工程师',
-              url: 'https://d125fmws0bore1.cloudfront.net/assets/shared/nd-cards/nd001@2x-3cc1a1253388bb5439fa3e2f53dbb73b510ddb4c94ab7b2819c2a3f75c0e98ac.jpg',
-              color: 'rgba(255,162,52,.8)'
-            },{
               name: '无人驾驶工程师',
               url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd013.jpg',
               color: 'rgba(255,84,131,.8)'
@@ -111,10 +118,6 @@ export default {
               name: 'Python 编程入门',
               url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd000.jpg',
               color: 'rgba(169,81,237,.8)'
-            },{
-              name: '微信小程序开发',
-              url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd666-cn.jpg',
-              color: 'rgba(125,151,173,.8)'
             },{
               name: 'Java 入门',
               url: 'https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd301-cn-basic.png',
@@ -167,135 +170,159 @@ export default {
 
 <style scoped lang="less">
 .plan-section{
-    font-size: 0;
 
-    h2{
-      padding-top: 3rem;
-      text-align: center;
-      font-size: 2rem;
+  h2{
+    padding-top: 3rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 2.25rem;
+    color: #02b3e4;
+  }
+
+  .card-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .card-item{
+      height: 360px;
+      width: 348px;
+      text-align: left;
+      position: relative;
+      background: #fff;
+      border-radius: .375rem;
+      transition: all .3s ease;
+      margin-top: 3rem;
+      overflow: hidden;
+      box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
+
+      &:hover{
+        box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+      }
+  }
+
+  .card-item-header{
+    position: relative;
+    height: 156px;
+    border-top-left-radius: .375rem;
+    border-top-right-radius: .375rem;
+    overflow: hidden;
+    background-size: cover;
+    background-image: url('https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd1309.jpg');
+
+    .card-header-mask{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(169,81,237,.8);
+    }
+
+    .card-header-title{
       font-weight: 400;
+      padding-top: 2.5em;
+      padding-left: 1.5em;
+      color: #fff;
+      font-size: 1.5rem;
       line-height: 2.25rem;
+    }
+  }
+
+  .card-item-body{
+    position: relative;
+    padding: 24px 32px;
+
+    &:before {
+        width: 23px;
+        height: 11px;
+        content: '';
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        background-image: url('./../../assets/images/index/index_zhiye_protag.png');
+        background-size: 23px 11px;
+    }
+
+    .card-item-img{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: .2;
+      z-index: 0;
+    }
+
+    .card-item-desc{
+      position: relative;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.75rem;
+      color: #525c65;
+      font-weight: 400;
+
+      .tag{
+        display: inline-block;
+        background: #02b3e4;
+        color: #fff;
+        padding: 0 1rem;
+        vertical-align: middle;
+        &.gray{
+          background: rgba(0, 0, 0, 0.4);
+        }
+        &.red{
+          background: #ff5483;
+        }
+      }
+    }
+  }
+
+  .btn-link{
+    position: relative;
+    display: block;
+    margin: 40px auto 0;
+    text-align: center;
+    background-color: #02b3e4;
+    color: #fff;
+    width: 150px;
+    height: 40px;
+    font-size: 1rem;
+    line-height: 40px;
+    border-radius: 4px;
+    vertical-align: middle;
+    transition: all .2s ease;
+    &:hover{
+      opacity: .8;
+      font-size: 1.5rem;
+    }
+  }
+
+  .more-plan{
+    text-align: right;
+    padding: 3rem 0;
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+    a{
       color: #02b3e4;
     }
-
-    .card-list{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-    }
-
-    .card-item{
-        height: 360px;
-        width: 348px;
-        text-align: left;
-        position: relative;
-        background: #fff;
-        border-radius: .375rem;
-        transition: all .3s ease;
-        margin-top: 3rem;
-        overflow: hidden;
-        box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
-
-        &:hover{
-          box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
-        }
-    }
-
-    .card-item-header{
-      position: relative;
-      height: 156px;
-      border-top-left-radius: .375rem;
-      border-top-right-radius: .375rem;
-      overflow: hidden;
-      background-size: cover;
-      background-image: url('https://cn.udacity.com/assets/iridium/images/shared/nd-cards/nd1309.jpg');
-
-      .card-header-mask{
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(169,81,237,.8);
-      }
-
-      .card-header-title{
-        font-weight: 400;
-        padding-top: 2.5em;
-        padding-left: 1.5em;
-        color: #fff;
-        font-size: 1.5rem;
-        line-height: 2.25rem;
-      }
-    }
-
-    .card-item-body{
-      position: relative;
-      padding: 24px 32px;
-
-      &:before {
-          width: 23px;
-          height: 11px;
-          content: '';
-          position: absolute;
-          top: 6px;
-          right: 6px;
-          background-image: url('./../../assets/images/index/index_zhiye_protag.png');
-          background-size: 23px 11px;
-      }
-
-      .card-item-img{
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        opacity: .2;
-        z-index: 0;
-      }
-
-      .card-item-desc{
-        position: relative;
-        margin-bottom: 1.5rem;
-        font-size: 1rem;
-        line-height: 1.75rem;
-        color: #525c65;
-        font-weight: 400;
-
-        .tag{
-          display: inline-block;
-          background: #02b3e4;
-          color: #fff;
-          padding: 0 1rem;
-          vertical-align: middle;
-          &.gray{
-            background: rgba(0, 0, 0, 0.4);
-          }
-          &.red{
-            background: #ff5483;
-          }
-        }
-      }
-    }
-
-    .btn-link{
-      position: relative;
-      display: block;
-      margin: 40px auto 0;
-      text-align: center;
-      background-color: #02b3e4;
-      color: #fff;
-      width: 150px;
-      height: 40px;
-      font-size: 1rem;
-      line-height: 40px;
-      border-radius: 4px;
+    .icon__arrow--white{
+      background: url('https://cn.udacity.com/assets/iridium/images/homepage/shared/icons/icon-arrow-right-white.svg') center center/22% no-repeat #02b3e4;
+      background-position: 25px center;
+      margin-left: 1.5rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: inline-block;
       vertical-align: middle;
-      transition: all .2s ease;
+      margin-left: .75rem;
+      transition: box-shadow .3s ease;
+      box-shadow: 8px 10px 20px 0 rgba(46,61,73,.15);
       &:hover{
-        opacity: .8;
-        font-size: 2rem;
+        box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
       }
     }
-
+  }
 }
 </style>

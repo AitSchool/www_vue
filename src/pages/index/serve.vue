@@ -1,86 +1,26 @@
 <template>
     <div class="serve-section">
         <div class="container-lg">
-            <h2>极客服务</h2>
             <ul class="serve-list">
-                <li>
-                    <i>兴趣班</i>
-                    <h3 class="title">探月计划</h3>
-                    <p class="title-next">编程教育，从小抓起</p>
-                    <p class="desc">
-                        门栏高？学不会？电脑只会玩游戏？<br>
-                        系统的学习，逐步进阶，小小极客诞生记
-                    </p>
-                    <div class="btn-container">
-                    <a href="https://shimo.im/docs/nwDduoDZ29o6Alc7" target="_blank">了解更多</a>
-                    </div>
+                <li class="serve-item" href="https://www.prodegree.com" target="_blank">
+                  <div class="serve-item-image">
+                    <img src="https://cn.udacity.com/assets/iridium/images/shared/icons/icon-nanodegree.svg">
+                  </div>
+                  <div class="serve-item-content">
+                    <p class="serve-item-title blue">职业学位</p>
+                    <p class="serve-item-desc">为职场人提供专业的职业技能认证</p>
+                    <p class="serve-item-desc">BAT一线工程师，一对一电测，获取专业技能证书</p>
+                  </div>
                 </li>
-
-                <li>
-                    <i>职业班</i>
-                    <h3 class="title">新蕾计划</h3>
-                    <p class="title-next">实战训练营，培养正规军</p>
-                    <p class="desc">
-                        代码是敲出来的，肌肉编程<br>
-                        5个月小白变大牛，月薪8000起
-                    </p>
-                    <div class="btn-container">
-                    <a href="https://shimo.im/docs/wgAgkqgGrFYO2ky7" target="_blank">了解更多</a>
-                    </div>
-                </li>
-
-                <li>
-                    <i>暑期班</i>
-                    <h3 class="title">破壳计划</h3>
-                    <p class="title-next">暑期不虚度，毕业不失业</p>
-                    <p class="desc">
-                        2个月内入手互联网知识<br>
-                        在一个好玩的地方，把想法实现
-                    </p>
-                    <div class="btn-container">
-                    <a href="https://shimo.im/docs/d9NB9xlSo2IOvCzI" target="_blank">了解更多</a>
-                    </div>
-                </li>
-
-                <li>
-                    <i>技能评测</i>
-                    <h3 class="title">职业学位</h3>
-                    <p class="title-next">为职场人提供专业的职业技能认证</p>
-                    <p class="desc">
-                        BAT一线工程师，一对一电测<br>
-                        认证当前技术水平，获取专业技能证书
-                    </p>
-                    <div class="btn-container">
-                    <a href="https://www.prodegree.com" target="_blank">了解更多</a>
-                    </div>
-                </li>
-
-
-                <li>
-                    <i>远程工作</i>
-                    <h3 class="title">旅行办公</h3>
-                    <p class="title-next">工作，还有诗和远方</p>
-                    <p class="desc">
-                        按需雇佣顶尖专业人才<br>
-                        企业级人才资源服务平台
-                    </p>
-                    <div class="btn-container">
-                    <a href="https://www.toppro.io" target="_blank">了解更多</a>
-                    </div>
-                </li>
-
-
-                <li>
-                    <i>传道授业</i>
-                    <h3 class="title">校园公开课</h3>
-                    <p class="title-next">给选择一个机会</p>
-                    <p class="desc">
-                        探索互联网前沿基础<br>
-                        延续终生不断助人前行的动力
-                    </p>
-                    <div class="btn-container">
-                    <a href="javascript:;" target="_blank">了解更多</a>
-                    </div>
+                <li class="serve-item" href="https://www.toppro.io" target="_blank">
+                  <div class="serve-item-image">
+                    <img src="https://cn.udacity.com/assets/iridium/images/shared/icons/icon-courses.svg">
+                  </div>
+                  <div class="serve-item-content">
+                    <p class="serve-item-title green">旅行办公</p>
+                    <p class="serve-item-desc">工作，还有诗和远方</p>
+                    <p class="serve-item-desc">按需雇佣顶尖专业人才，企业级人才资源服务平台</p>
+                  </div>
                 </li>
             </ul>
         </div>
@@ -100,123 +40,70 @@ export default {
 
 <style scoped lang="less">
 .serve-section{
+  background-color: #fafbfc;
+  padding: 4.5rem 0;
 
-    h2{
-        padding: 3rem 0;
-        text-align: center;
-        font-size: 2rem;
-        font-weight: 400;
-        line-height: 2.25rem;
+  .serve-list{
+    font-size: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .serve-item{
+      display: inline-block;
+      vertical-align: middle;
+      width: 580px;
+      height: 192px;
+      background: #fff;
+      position: relative;
+      text-align: center;
+      transition: all .5s ease;
+      box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
+      display: flex;
+      align-items: center;
+      border-radius: .375rem;
+      cursor: pointer;
+
+      &:hover{
+        box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+      }
+    }
+
+    .serve-item-image{
+      width: 25%;
+      text-align: center;
+
+      img{
+        max-width: 80%;
+      }
+    }
+
+    .serve-item-content{
+      width: 70%;
+      text-align: left;
+    }
+
+    .serve-item-title{
+      font-size: 1.5rem;
+      line-height: 2.25rem;
+      font-weight: 400;
+      margin-bottom: 12px;
+
+      &.blue{
         color: #02b3e4;
+      }
+
+      &.green{
+        color: #15c26b;
+      }
     }
 
-    .serve-list{
-        font-size: 0;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-
-        li{
-            display: inline-block;
-            vertical-align: middle;
-            width: 326px;
-            height: 210px;
-            background: #fff;
-            margin-right: 10px;
-            position: relative;
-            text-align: center;
-            transition: all .5s ease;
-            box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
-
-            &:hover{
-                box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
-            }
-
-            &:nth-child(3n){
-                margin-right: 0;
-                width: 328px;
-            }
-            &:nth-child(n+4){
-                margin-top: 10px;
-            }
-
-            >i{
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                min-width: 50px;
-                padding: 0 5px;
-                line-height: 20px;
-                height: 22px;
-                color:#bbb;
-                border:1px solid #f0f0f0;
-                font-size: 12px;
-                font-style: normal;
-            }
-
-            .title{
-                font-size: 16px;
-                color:#02b3e4;
-                line-height: 22px;
-                font-weight: 500;
-                padding-top: 30px;
-            }
-
-            .title-next{
-                font-size: 12px;
-                color:#999;
-                line-height: 22px;
-            }
-
-            .desc{
-                margin-top: 15px;
-                margin-bottom: 20px;
-                font-size: 13px;
-                color:#333;
-                line-height: 20px;
-            }
-
-            .btn-container{
-                font-size: 0;
-                a,.qun{
-                    display: inline-block;
-                    min-width: 85px;
-                    text-align: center;
-                    font-size: 13px;
-                    color:#666;
-                    border:1px solid #e4e4e4;
-                    transition: all .5s ease;
-                    margin-right: 20px;
-                    padding: 8px;
-
-                    &:last-child{
-                        margin-right: 0px;
-                    }
-
-                    &.apply{
-                        border:1px solid #02b3e4;
-                        color:#02b3e4;
-                    }
-
-                    &.ready{
-                        cursor: text;
-                    }
-
-
-                    &:hover{
-                        border:1px solid #02b3e4;
-                        background: #02b3e4;
-                        color: #fff;
-
-                        &.ready{
-                            background: #fff;
-                            color:#666;
-                            border:1px solid #e4e4e4;
-                        }
-                    }
-                }
-            }
-        }
+    .serve-item-desc{
+      font-size: .875rem;
+      line-height: 1.5rem;
+      color: #525c65;
+      font-weight: 400;
     }
+  }
 }
 </style>
