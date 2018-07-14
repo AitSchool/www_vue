@@ -11,7 +11,6 @@
     </div>
     <div class="aboutus-section">
       <div class="container">
-          <img class="hero-octonaut" src="./../../assets/images/github_octonaut.svg">
           <div class="about-us">
               <h3>关于我们</h3>
               <div class="desc">
@@ -111,26 +110,6 @@ export default {
   }
 }
 
-.hero-octonaut{
-    position: absolute;
-    top: -150px;
-    left: 0;
-    width: 60px;
-    // animation: hero-octonaut 2s alternate ease-in-out infinite;
-    will-change: transform;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-@keyframes hero-octonaut{
-    0%{
-        transform: translateY(-8px);
-    }
-    100%{
-        transform: translateY(8px);
-    }
-
-}
 
 .employment{
     position: absolute;
@@ -193,7 +172,7 @@ export default {
 
 .aboutus-section{
     background: url('./../../assets/images/github_rock.svg') no-repeat;
-    background-color: #2c2a2b;
+    background-color: #eafbff;
     background-position: calc(50% + 380px) 60px;
     padding-top: 200px;
     padding-bottom: 200px;
@@ -202,8 +181,7 @@ export default {
         display: inline-block;
         vertical-align: top;
         width: 365px;
-        color: #efdab9;
-        // color: #3f464b;
+        color: #525c65;
         font-size: 16px;
         line-height: 24px;
         letter-spacing: .5px;
@@ -226,12 +204,12 @@ export default {
 
     .touch-us{
         li{
-            color: #ffd152;
+            color: #525c65;
             margin-bottom: 5px;
             span{
                 display: inline-block;
                 width: 60px;
-                color: #efdab9;
+                // color: #efdab9;
             }
         }
     }
