@@ -12,10 +12,10 @@
                                     <a href="javascript:;" :class="['sidebar-link',(chapter.id == chapter_id) ? 'active' : '']">{{chapter.name}}</a>
                                     <ul class="sidebar-sub-headers">
                                         <li class="sidebar-sub-header" v-for="section in chapter.sections">
-                                            <router-link :to="{ name:'section_page',params: { 
-                                                id: course.id, 
-                                                chapter: chapter.id, 
-                                                section: section.id }}" 
+                                            <router-link :to="{ name:'section_page',params: {
+                                                id: course.id,
+                                                chapter: chapter.id,
+                                                section: section.id }}"
                                                 :class="['sidebar-link',(section.id == section_id) ? 'active' : '']"
                                             >{{section.name}}</router-link>
                                         </li>
@@ -27,7 +27,7 @@
                 </ul>
             </div>
             <div class="mainer">
-                <div class="content" v-if="section.name">
+                <div class="content" id="marked-content" v-if="section.name">
                     <Marked :content="section.content || '暂无内容'"></Marked>
                 </div>
             </div>
@@ -40,16 +40,16 @@
                         <p :class="['chapter-title']" >{{chapter.name}}</p>
                         <ul class="section_list">
                             <li v-for="section in chapter.sections" :class="[(section.id == section_id) && (chapter.id == chapter_id) ? 'section_active' : '']">
-                                <router-link :to="{ name:'section_page',params: { 
-                                    id: course.id, 
-                                    chapter: chapter.id, 
+                                <router-link :to="{ name:'section_page',params: {
+                                    id: course.id,
+                                    chapter: chapter.id,
                                     section: section.id }}" >{{section.name}}</router-link>
                             </li>
                             <li>
-                                <router-link 
-                                    v-for="homework in chapter.homeworks" 
-                                    :to="{ name:'homework_page',params: {id: homework.id }}"  
-                                    :key="homework.id" 
+                                <router-link
+                                    v-for="homework in chapter.homeworks"
+                                    :to="{ name:'homework_page',params: {id: homework.id }}"
+                                    :key="homework.id"
                                 >{{homework.name}}</router-link>
                             </li>
                         </ul>
@@ -77,9 +77,13 @@ import Loading from '@/components/loading.vue'
 export default {
     name: 'section_page',
     created () {
+        if(!this.token){
+          this.$router.push({ name: 'index_page' })
+          return
+        }
         this.fetchData()
         this.setInterval = setInterval(()=>{
-            this.sendtimes();
+            // this.sendtimes();
         },30000)
     },
     props: {
@@ -138,6 +142,12 @@ export default {
         },
         getCourse:function(id){
 
+            let course = storage.get('exp_course_' + id);
+            if(course){
+                this.course = course
+                return
+            }
+
             this.token && axios({
                 method: 'get',
                 url: `${API.course}/${id}`,
@@ -146,6 +156,7 @@ export default {
                 let course = response.data;
                 console.log(course);
                 this.course = course;
+                storage.set('course_'+ id, course, 600*24);
             })
             .catch( (error)=> {
                 console.log(error)
@@ -153,7 +164,13 @@ export default {
             });
         },
         getSection:function(id){
-            
+
+            let section = storage.get('exp_section_' + id);
+            if(section){
+                this.section = section
+                return
+            }
+
             this.token && axios({
                 method: 'get',
                 url: `${API.section}/${id}`,
@@ -162,8 +179,9 @@ export default {
                 }
             })
             .then( (response)=> {
-                this.section = response.data;
-                console.log(this.section)
+                let section = response.data;
+                this.section = section;
+                storage.set('section_'+ id, section, 600*24);
             })
             .catch( (error)=> {
                 this.$router.push('/')
@@ -274,7 +292,7 @@ export default {
         a{
             color: #666;
         }
-        
+
         &.chapter_item{
             .chapter-title{
                 display: block;
@@ -365,14 +383,14 @@ export default {
     vertical-align: top;
     width: 720px;
     padding-left: 20px;
-    
+
     h4{
         margin: 0 0 20px 0;
         padding: 0;
         font-size: 22px;
         color: #333;
     }
-    
+
     .text-content{
         font-size: 14px;
         line-height: 1.5;

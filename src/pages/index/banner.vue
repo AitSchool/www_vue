@@ -7,7 +7,9 @@
           <p class="focus-tips">限时 超值试学中</p>
           <h2 class="focus-title">零基础，一站式入门互联网编程研发</h2>
           <p class="focus-desc">Web 编程入门 | 服务器搭建 | 前沿实战 |  小班互助</p>
-          <button class="focus-btn">立抢限量试学</button>
+          <router-link class="focus-btn" :to="{ name:'plan_page',params: { id: 1}}" >
+            立抢限量试学
+          </router-link>
         </div>
       </div>
       <div class="banner-right">

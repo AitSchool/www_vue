@@ -23,7 +23,7 @@
 
                 <!-- 链接 -->
                 <router-link v-if="plan.status === 1" class="btn-link" :to="{ name:'plan_page',params: { id: plan.id}}" >
-                  立即加入
+                  {{ plan.status === 1 && myplan.includes(plan.id) ? '继续学习' : '马上加入'}}
                 </router-link>
               </div>
             </div>
@@ -284,7 +284,7 @@ export default {
     display: block;
     margin: 40px auto 0;
     text-align: center;
-    background-color: #02b3e4;
+    background-color: #ff5483;
     color: #fff;
     width: 150px;
     height: 40px;

@@ -10,8 +10,8 @@
                 <div class="course-detail-infomation">
                     <h2 class="title">{{course.name}} - {{course.short_name}}</h2>
                     <p class="description">{{course.description}}</p>
-                    <div class="price">¥ {{course.price}}</div>
-                    <div class="course-detail-action">
+                    <div class="price" v-if="!can_learn">¥ {{course.price}}</div>
+                    <div class="course-detail-action" v-if="!can_learn">
                         <div class="course-detail-btn">
                             <a v-if="!can_learn" href="javascript:;" class="course-detail-btn goPay">立即报名</a>
                             <a v-if="can_learn" href="javascript:;" class="course-detail-btn goStudy">去学习</a>
@@ -32,9 +32,9 @@
                             <ul class="chapter-children">
                                 <li v-for="(section, sindex) in chapter.sections" class="section-item">
                                     <span v-if="!can_learn">第 {{sindex + 1}} 节 {{section.name}}</span>
-                                    <router-link v-else :to="{ name:'section_page',params: { 
-                                        id: course.id, 
-                                        chapter: chapter.id, 
+                                    <router-link v-else :to="{ name:'section_page',params: {
+                                        id: course.id,
+                                        chapter: chapter.id,
                                         section: section.id }}" >第 {{sindex + 1}} 节 {{section.name}}</router-link>
                                 </li>
                             </ul>
@@ -42,7 +42,7 @@
                             <div class="homeworks-container">
                                 <p class="link homeworks-item" v-if="!can_learn" v-for="homework in chapter.homeworks">{{homework.name}}
                                 </p>
-                                <router-link v-if="can_learn" class="link homeworks-item"  v-for="homework in chapter.homeworks" :key="homework.id" :to="{ name:'homework_page',params: { 
+                                <router-link v-if="can_learn" class="link homeworks-item"  v-for="homework in chapter.homeworks" :key="homework.id" :to="{ name:'homework_page',params: {
                                     id: homework.id  }}" >{{homework.name}}
                                 </router-link>
                             </div>
@@ -54,7 +54,7 @@
                     <p class="title">实战训练</p>
                     <div class="task-container">
                         <p class="task-item link" v-if="!can_learn" v-for="task in course.tasks">{{task.name}}</p>
-                        <router-link  v-if="can_learn" class="task-item link"  v-for="task in course.tasks" :key="task.id" :to="{ name:'task_page',params: { 
+                        <router-link  v-if="can_learn" class="task-item link"  v-for="task in course.tasks" :key="task.id" :to="{ name:'task_page',params: {
                             id: task.id  }}" >{{task.name}}
                         </router-link>
                     </div>
@@ -90,6 +90,12 @@ export default {
     },
     methods: {
         getCourse:function(id){
+            let course = storage.get('exp_course_' + id);
+            if(course){
+                this.course = course
+                return
+            }
+
             axios({
                 method: 'get',
                 url: `${API.course}/${id}`,
@@ -98,6 +104,7 @@ export default {
                 let course = response.data;
                 console.log(course);
                 this.course = course;
+                storage.set('course_' + id, course, 600*24);
             })
             .catch( (error)=> {
                 console.log(error)
@@ -105,7 +112,7 @@ export default {
             });
         },
         hasBuy:function(id){
-            
+
             this.token && axios({
                 method: 'get',
                 url: `${API.course}/${id}/buy-status`,
@@ -198,9 +205,9 @@ export default {
                 width: 125px;
                 height: 40px;
                 border-radius: 4px;
-                background: #35b558;
+                background: #02b3e4;
                 color: #fff;
-                border: 1px solid #35b558;
+                border: 1px solid #02b3e4;
                 font-size: 18px;
                 line-height: 38px;
                 transition: all .2s ease;
@@ -208,7 +215,7 @@ export default {
 
                 &:hover{
                     background: #fff;
-                    color: #35b558;
+                    color: #02b3e4;
                 }
             }
         }
@@ -237,7 +244,7 @@ export default {
         border-bottom: 0;
 
         .title{
-            border-left: 2px solid #35b558;
+            border-left: 2px solid #02b3e4;
             font-size: 16px;
             color: #333;
             font-weight: 500;
@@ -299,7 +306,7 @@ export default {
             letter-spacing: 1px;
         }
     }
-    
+
     .task-section{
         margin-top: 30px;
 

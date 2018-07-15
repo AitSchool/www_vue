@@ -1,13 +1,13 @@
 <template>
     <div class="plan_page">
-      <banner></banner>
-      <market></market>
+      <banner :is_buy="is_buy"></banner>
+      <market v-if="!is_buy"></market>
       <course :plan="plan"></course>
-      <serve></serve>
-      <advantage></advantage>
-      <try7day></try7day>
+      <serve v-if="!is_buy"></serve>
+      <advantage v-if="!is_buy"></advantage>
+      <try7day v-if="!is_buy"></try7day>
       <help></help>
-      <contact></contact>
+      <contact v-if="!is_buy"></contact>
     </div>
 </template>
 
@@ -24,7 +24,6 @@ import advantage from './advantage'
 import help from './help'
 import try7day from './try'
 import contact from './contact'
-
 
 export default {
     name: 'plan_page',
@@ -48,6 +47,13 @@ export default {
     },
     methods: {
         getPlanInfo:function(id){
+
+            let plan = storage.get('exp_plan_' + id);
+            if(plan){
+                this.plan = plan
+                return
+            }
+
             axios({
                 method: 'get',
                 url: `${API.plan}/${id}`,
@@ -56,6 +62,7 @@ export default {
                 let plan = response.data;
                 this.plan = plan
                 console.log(plan)
+                storage.set('plan_'+ id,plan,600*24);
             })
             .catch( (error)=> {
                 this.$router.push('/')
@@ -71,6 +78,7 @@ export default {
                 }
             })
             .then( (response)=> {
+              console.log(response.data)
                 let is_buy = response.data.is_buy;
                 this.is_buy = is_buy;
             })

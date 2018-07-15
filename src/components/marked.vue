@@ -6,6 +6,7 @@
 import marked from 'marked'
 import hljs from 'highlight.js'
 
+
 marked.setOptions({
   renderer: new marked.Renderer(),
   gfm: true,
@@ -35,7 +36,7 @@ export default {
     },
     computed:{
         compiledMarkdown: function () {
-            return marked(this.content, { sanitize: true })
+          return marked(this.content, { sanitize: true })
         }
     },
 }

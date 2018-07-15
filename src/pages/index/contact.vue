@@ -26,10 +26,8 @@
           </div>
           <div class="touch-us">
               <h3>联系我们</h3>
-              <ul>
-                  <li><span>电话</span>13502222677</li>
-                  <li><span>地址</span>广州增城健生西路19号扎克斯宇宙中心</li>
-              </ul>
+                  <p><span>电话</span>13502222677</p>
+                  <p><span>地址</span>广州增城健生西路19号扎克斯宇宙中心</p>
           </div>
           <div class="employment">
               <a class="e_link" href="javascript:;">
@@ -203,15 +201,13 @@ export default {
     }
 
     .touch-us{
-        li{
-            color: #525c65;
-            margin-bottom: 5px;
-            span{
-                display: inline-block;
-                width: 60px;
-                // color: #efdab9;
-            }
-        }
+      color: #525c65;
+      margin-bottom: 5px;
+      span{
+          display: inline-block;
+          width: 60px;
+          // color: #efdab9;
+      }
     }
 }
 </style>

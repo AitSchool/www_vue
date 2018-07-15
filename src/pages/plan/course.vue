@@ -188,7 +188,7 @@ export default {
       padding: 6rem 0;
       font-size: 0;
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       flex-wrap: wrap;
 
       .task-item{
@@ -233,7 +233,8 @@ export default {
               font-size: 14px;
               padding: 0 10px;
               overflow: hidden;
-              color: #666;
+              color: #525c65;
+              font-weight: 600;
           }
 
           .score-contain{
@@ -285,7 +286,7 @@ export default {
 
           &.lock{
               h4{
-                  background: #999;
+                  background: #7d97ad;
               }
 
               .score-contain{

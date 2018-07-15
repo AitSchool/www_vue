@@ -3,7 +3,7 @@
   <div class="banner-section">
     <div class="container-lg">
         <div class="video-container">
-          <video class="video" autoplay="autoplay" loop="loop">
+          <video id="planPageBannerVideo" class="video" autoplay="autoplay" loop="loop">
             <source src="https://s3.cn-north-1.amazonaws.com.cn/static-assets/video-bg-nd089.mp4">
           </video>
           <div class="course-container">
@@ -26,12 +26,14 @@
                 </div>
               </div>
               <div class="btn-wrapper">
-                <button class="btn btn-primary">有席位时通知我</button>
-                <button class="btn btn-default">免费获取课程大纲</button>
+                <button class="btn btn-primary" v-if="!is_buy">有席位时通知我</button>
+                <button class="btn btn-default" v-if="!is_buy">免费获取课程大纲</button>
+                <button class="btn btn-primary" v-if="is_buy">马上学习</button>
               </div>
-              <div class="couser-info">席位有限，立即行动！抢先掌握稀缺技术，成为抢手人才</div>
-              <div class="icon-flag">新课首发!</div>
-              <div class="abs-bottom-tips">本期席位已抢完，下期即将开放，抢先免费试听！</div>
+              <div class="couser-info" v-if="!is_buy">席位有限，立即行动！抢先掌握稀缺技术，成为抢手人才</div>
+              <div class="couser-info" v-if="is_buy">您已报名，翻滚吧，少年！</div>
+              <div class="icon-flag" v-if="!is_buy">新课首发!</div>
+              <div class="abs-bottom-tips" v-if="!is_buy">本期席位已抢完，下期即将开放，抢先免费试听！</div>
             </div>
           </div>
         </div>
@@ -68,10 +70,19 @@
 <script>
 export default {
   name: 'plan_banner',
+  props: {
+    is_buy: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data () {
     return {
 
     }
+  },
+  mounted () {
+    // let video = document.getElementById('planPageBannerVideo');
   }
 }
 </script>

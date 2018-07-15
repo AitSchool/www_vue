@@ -1,18 +1,23 @@
 .content-style{
-    color: #333;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    color: #2c3e50;
 
-    
+
     h1,h2,h3,h4,h5{
-        margin: 15px 0;
+        margin: 30px 0;
     }
 
     h1{
-        font-size: 25px;
+        font-size: 35px;
     }
 
     h2{
-        font-size: 24px;
+        font-size: 26px;
         font-weight: 500;
+        border-bottom: 1px solid #eaecef;
     }
 
     h3{
@@ -28,20 +33,22 @@
     }
 
     pre{
+        position: relative;
         margin-bottom: 20px;
         padding: 15px;
         font-size: 13px;
         word-wrap: normal;
         word-break: break-word;
-        white-space: pre;
         overflow: auto;
         background: #f6f6f6;
         color: #657b83;
+        border-radius: 6px;
+        white-space: pre-wrap;
+        word-break: break-word;
     }
 
     code{
         word-break: break-all;
-        font-size: 12px;
         line-height: 18px;
         font-family: Menlo,Monaco,Consolas,Courier New,monospace;
         background: #f8f8f8;
@@ -50,7 +57,9 @@
 
     blockquote{
         padding-left: 20px;
-        border-left: 2px solid #02b3e4;
+        border-left: 4px solid #02b3e4;
+        font-size: 1.2rem;
+        font-weight: 500;
     }
 
     strong{
@@ -58,17 +67,17 @@
     }
 
     p{
-        margin: 10px 0;
-        line-height: 1.6;
+        margin: 16px 0;
+        line-height: 1.7;
     }
 
     a{
         text-decoration: none;
-        color: #2196F3;
-        border-bottom: 1px solid #2196F3;
+        color: #029fcb;
+        border-bottom: 1px solid #029fcb;
     }
 
-    ul{
+    ol,ul{
         margin: 10px 0;
         list-style-type: disc;
         padding-left: 20px;
