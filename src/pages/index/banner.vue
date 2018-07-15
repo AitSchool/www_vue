@@ -6,7 +6,7 @@
         <div class="focus-content">
           <p class="focus-tips">限时 超值试学中</p>
           <h2 class="focus-title">零基础，一站式入门互联网编程研发</h2>
-          <p class="focus-desc">相比于“获取知识”我们更关注你切实获得“能力提升”</p>
+          <p class="focus-desc">Web 编程入门 | 服务器搭建 | 前沿实战 |  小班互助</p>
           <button class="focus-btn">立抢限量试学</button>
         </div>
       </div>
