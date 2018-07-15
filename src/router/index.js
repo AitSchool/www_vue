@@ -13,8 +13,8 @@ import NotFoundPage from '@/pages/common/404'
 
 Vue.use(Router)
 export default new Router({
-    mode: 'history',
-    routes: [
+  mode: 'history',
+  routes: [
         {
             path: '*',
             name: 'notfound_page',
@@ -65,5 +65,8 @@ export default new Router({
             name: 'graduation_page',
             component: GraduationPage
         },
-    ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
