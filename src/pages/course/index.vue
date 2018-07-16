@@ -11,7 +11,7 @@
                     <h2 class="title">{{course.name}} - {{course.short_name}}</h2>
                     <p class="description">{{course.description}}</p>
                     <div class="price" v-if="!can_learn">¥ {{course.price}}</div>
-                    <div class="course-detail-action" v-if="!can_learn">
+                    <div class="course-detail-action" v-if="false">
                         <div class="course-detail-btn">
                             <a v-if="!can_learn" href="javascript:;" class="course-detail-btn goPay">立即报名</a>
                             <a v-if="can_learn" href="javascript:;" class="course-detail-btn goStudy">去学习</a>

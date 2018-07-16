@@ -2,7 +2,7 @@
     <div class="serve-section">
         <div class="container-lg">
             <div class="serve-list">
-                <div class="serve-item" href="https://www.prodegree.com" target="_blank">
+                <a class="serve-item" href="https://www.prodegree.com" target="_blank">
                   <div class="serve-item-image">
                     <img src="https://cn.udacity.com/assets/iridium/images/shared/icons/icon-nanodegree.svg">
                   </div>
@@ -11,8 +11,8 @@
                     <p class="serve-item-desc">为职场人提供专业的职业技能认证</p>
                     <p class="serve-item-desc">BAT一线工程师，一对一电测，获取专业技能证书</p>
                   </div>
-                </div>
-                <div class="serve-item" href="https://www.toppro.io" target="_blank">
+                </a>
+                <a class="serve-item" href="https://www.toppro.io" target="_blank">
                   <div class="serve-item-image">
                     <img src="https://cn.udacity.com/assets/iridium/images/shared/icons/icon-courses.svg">
                   </div>
@@ -21,7 +21,7 @@
                     <p class="serve-item-desc">工作，还有诗和远方</p>
                     <p class="serve-item-desc">按需雇佣顶尖专业人才，企业级人才资源服务平台</p>
                   </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>

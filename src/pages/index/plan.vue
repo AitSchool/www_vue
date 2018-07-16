@@ -1,9 +1,9 @@
 <template>
-    <div class="plan-section" v-show="plans.length">
+    <div class="plan-section" v-show="showPlan.length">
         <div class="container-lg">
             <h2>学习计划</h2>
             <div class="card-list">
-              <div class="card-item"  v-for="(plan, index ) in plans" >
+              <div class="card-item"  v-for="(plan, index ) in showPlan" >
                 <div class="card-item-header"
                   :style="{ backgroundImage: 'url('+backgroundImage[index].url+')' }">
                   <div class="card-header-mask" :style="{ backgroundColor: backgroundImage[index].color }">
@@ -16,19 +16,18 @@
                   <!-- 状态 -->
                   <p class="card-item-desc">
                     <span class="tag red" v-if="plan.status === 1 && myplan.includes(plan.id)">继续学习</span>
-                    <span class="tag" v-else-if="plan.status === 1">马上学习</span>
+                    <span class="tag red" v-else-if="plan.status === 1">马上学习</span>
                     <span class="tag gray" v-else="plan.status === 2">敬请期待</span>
                   </p>
                 </div>
 
                 <!-- 链接 -->
-                <router-link v-if="plan.status === 1" class="btn-link" :to="{ name:'plan_page',params: { id: plan.id}}" >
-                  {{ plan.status === 1 && myplan.includes(plan.id) ? '继续学习' : '马上加入'}}
+                <router-link v-if="plan.status === 1" class="link" :to="{ name:'plan_page',params: { id: plan.id}}" >
                 </router-link>
               </div>
             </div>
             <div class="more-plan">
-              <a href="javascript:;">查看全部纳米学位项目<span class="icon__arrow--white"></span></a>
+              <a v-if="plans.length !== showPlan.length" @click="showMorePlan" href="javascript:;">查看全部纳米学位项目<span class="icon__arrow--white"></span></a>
             </div>
         </div>
     </div>
@@ -39,7 +38,7 @@
 export default {
     name: 'index_plan',
     mounted () {
-
+      this.showPlan = this.plans.slice(0,6);
     },
     props: {
         plans: {
@@ -53,6 +52,7 @@ export default {
     },
     data () {
         return {
+            showPlan: [],
             plansMock:[{
                 id:1,
                 name:'WEB工程师',
@@ -165,6 +165,11 @@ export default {
             },]
         }
     },
+    methods: {
+      showMorePlan: function() {
+        this.showPlan = this.plans
+      }
+    }
 }
 </script>
 
@@ -187,10 +192,10 @@ export default {
   }
 
   .card-item{
+      position: relative;
       height: 360px;
       width: 348px;
       text-align: left;
-      position: relative;
       background: #fff;
       border-radius: .375rem;
       transition: all .3s ease;
@@ -279,24 +284,12 @@ export default {
     }
   }
 
-  .btn-link{
-    position: relative;
-    display: block;
-    margin: 40px auto 0;
-    text-align: center;
-    background-color: #ff5483;
-    color: #fff;
-    width: 150px;
-    height: 40px;
-    font-size: 1rem;
-    line-height: 40px;
-    border-radius: 4px;
-    vertical-align: middle;
-    transition: all .2s ease;
-    &:hover{
-      opacity: .8;
-      font-size: 1.5rem;
-    }
+  .link{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .more-plan{

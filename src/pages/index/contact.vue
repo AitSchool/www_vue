@@ -30,7 +30,7 @@
                   <p><span>地址</span>广州增城健生西路19号扎克斯宇宙中心</p>
           </div>
           <div class="employment">
-              <a class="e_link" href="javascript:;">
+              <a class="e_link" href="https://shimo.im/docs/3BrelqmZk4IPJmvM" target="_blank">
                   <div class="employ_entrances">正在招聘</div>
               </a>
           </div>
