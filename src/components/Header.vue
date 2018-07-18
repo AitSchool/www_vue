@@ -44,8 +44,10 @@ export default {
 
 <style scoped lang="less">
     header{
+        position: relative;
         background: #fff;
         border-bottom: 1px solid #e4e4e4;
+        z-index: 1;
         .container{
             position: relative;
             width: 1000px;

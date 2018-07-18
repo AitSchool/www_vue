@@ -8,8 +8,8 @@
                         <div class="sidebar-group">
                             <p class="sidebar-heading"><span>{{course.name}}</span></p>
                             <ul class="sidebar-group-items">
-                                <li v-for="chapter in course.chapters">
-                                    <a href="javascript:;" :class="['sidebar-link',(chapter.id == chapter_id) ? 'active' : '']">{{chapter.name}}</a>
+                                <li v-for="chapter in course.chapters" :class="['chapter-item',(chapter.id == chapter_id) ? 'active' : '']">
+                                    <div :class="['chapter-title',(chapter.id == chapter_id) ? 'active' : '']">{{chapter.name}}</div>
                                     <ul class="sidebar-sub-headers">
                                         <li class="sidebar-sub-header" v-for="section in chapter.sections">
                                             <router-link :to="{ name:'section_page',params: {
@@ -18,6 +18,24 @@
                                                 section: section.id }}"
                                                 :class="['sidebar-link',(section.id == section_id) ? 'active' : '']"
                                             >{{section.name}}</router-link>
+                                        </li>
+                                        <li class="sidebar-sub-header" v-for="homework in chapter.homeworks">
+                                            <router-link :to="{ name:'section_page',params: {
+                                                id: homework.id,
+                                                chapter: chapter.id }}"
+                                                :class="['sidebar-link']"
+                                            >{{homework.name}}</router-link>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li :class="['chapter-item']" v-if="course.tasks.length">
+                                    <div :class="['chapter-title']">实战任务</div>
+                                    <ul class="sidebar-sub-headers">
+                                        <li class="sidebar-sub-header" v-for="task in course.tasks">
+                                            <router-link :class="['sidebar-link']"
+                                                :to="{ name:'task_page',params: {id: task.id  }}"
+                                            >{{task.name}}
+                                            </router-link>
                                         </li>
                                     </ul>
                                 </li>
@@ -28,36 +46,6 @@
             </div>
             <div class="mainer">
                 <div class="content" id="marked-content" v-if="section.name">
-                    <Marked :content="section.content || '暂无内容'"></Marked>
-                </div>
-            </div>
-        </div>
-        <div class="container" v-if="section.name && false">
-            <div class="navigation-contain">
-                <h3 id="course_id">{{course.name}}</h3>
-                <ul class="chapter_list">
-                    <li class="chapter_item" v-for="chapter in course.chapters" :class="[(chapter.id == chapter_id) ? 'chapter_active' : '']">
-                        <p :class="['chapter-title']" >{{chapter.name}}</p>
-                        <ul class="section_list">
-                            <li v-for="section in chapter.sections" :class="[(section.id == section_id) && (chapter.id == chapter_id) ? 'section_active' : '']">
-                                <router-link :to="{ name:'section_page',params: {
-                                    id: course.id,
-                                    chapter: chapter.id,
-                                    section: section.id }}" >{{section.name}}</router-link>
-                            </li>
-                            <li>
-                                <router-link
-                                    v-for="homework in chapter.homeworks"
-                                    :to="{ name:'homework_page',params: {id: homework.id }}"
-                                    :key="homework.id"
-                                >{{homework.name}}</router-link>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="section-contain" v-if="section.name">
-                <div class="text-content">
                     <Marked :content="section.content || '暂无内容'"></Marked>
                 </div>
             </div>
@@ -197,71 +185,78 @@ export default {
 
 <style scoped lang="less">
 .section_page{
-    padding-top: 20px;
-    padding-bottom: 70px;
+    position: fixed;
+    top: 61px;
+    bottom: 51px;
+    width: 100%;
+    background-color: #f8f9fb;
 }
 
 .section-container{
     display: flex;
-    //width: 1200px;
-    //margin: 0 auto;
+    height: 100%;
+
     .sidebar{
-        font-size: 15px;
-        background-color: #fff;
         width: 20rem;
-        z-index: 10;
-        margin: 0;
-        top: 3.6rem;
-        left: 0;
-        bottom: 0;
         box-sizing: border-box;
-        border-right: 1px solid #eaecef;
         overflow-y: auto;
+        border-right: 1px solid #e4e4e4;
 
-        .sidebar-links {
-            padding: 1.5rem 0;
-        }
-
-        .sidebar-heading {
+        .sidebar-heading{
+            line-height: 50px;
+            font-size: 16px;
+            padding-left: 32px;
+            font-weight: 600;
             color: #2c3e50;
-            transition: color .15s ease;
-            cursor: pointer;
-            font-size: 1.1em;
-            font-weight: 700;
-            padding-left: 1.5rem;
-            margin-top: 0;
-            margin-bottom: .5rem;
         }
+
+        .chapter-title{
+            display: block;
+            background: #eff1f3;
+            color: #7d97ad;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 10px 16px 10px 32px;
+        }
+
 
         .sidebar-link {
+            display: block;
             font-weight: 400;
-            display: inline-block;
-            color: #666;
-            border-left: .25rem solid transparent;
-            padding: .35rem 1rem .35rem 1.25rem;
-            line-height: 1.4;
-            width: 100%;
-            box-sizing: border-box;
+            color: #7d97ad;
+            padding: 14px;
+            padding-left: 32px;
+            line-height: 1.6;
+            font-size: 14px;
+            vertical-align: middle;
+            transition: all .2s ease;
+            &:before{
+                content: '';
+                display: inline-block;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                margin-right: 14px;
+                background: #7d97ad;
+                vertical-align: middle;
+            }
 
             &.active {
-                color: #02b3e4;
-                border-left-color: #02b3e4;
+                color: #2789d9!important;
+                font-weight: 600;
+                &:before{
+                    background: #2789d9;
+                }
             }
-        }
 
-        .sidebar-sub-headers {
-            padding-left: 1rem;
-            font-size: .95em;
-
-            .sidebar-link {
-                font-weight: 400;
-                padding-top: .25rem;
-                padding-bottom: .25rem;
-                border-left: none;
+            &:hover{
+                font-weight: 600;
+                color: #2e3d48;
             }
         }
     }
     .mainer{
+        overflow-y: auto;
         .content{
             max-width: 750px;
             margin: 0 auto;
@@ -269,134 +264,4 @@ export default {
         }
     }
 }
-
-.navigation-contain{
-    display: inline-block;
-    width: 230px;
-    padding-bottom: 20px;
-    vertical-align: top;
-    border-right: 1px solid #e4e4e4;
-
-
-    h3{
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 15px;
-    }
-
-    .chapter_list >li{
-        position: relative;
-        padding: 0 40px 8px 0;
-        font-size: 14px;
-
-        a{
-            color: #666;
-        }
-
-        &.chapter_item{
-            .chapter-title{
-                display: block;
-                margin-bottom: 5px;
-            }
-
-            &.chapter_active{
-                .chapter-title{
-                    color: #ff5483;
-                    font-weight: 600;
-                }
-                .section_list{
-                    display: block;
-                }
-            }
-
-            &:after{
-                position: absolute;
-                top: 3px;
-                right: 20px;
-                display: inline-block;
-                width: 14px;
-                height: 14px;
-                content: '';
-                background: url('./../../assets/images/chapter_default_icon.png')no-repeat center;
-            }
-            &.finish{
-                &:after{
-                    background: url('./../../assets/images/chapter_finish_icon.png')no-repeat center;
-                }
-            }
-            &.study{
-                &:after{
-                    background: url('./../../assets/images/chapter_study_icon.png')no-repeat center;
-                }
-            }
-        }
-
-        .section_list{
-            >li{
-                position: relative;
-                font-size: 12px;
-                padding-left: 15px;
-                height: 20px;
-                line-height: 20px;
-                margin-bottom: 5px;
-
-                &:after{
-                    position: absolute;
-                    top: 3px;
-                    right: -20px;
-                    display: inline-block;
-                    width: 14px;
-                    height: 14px;
-                    text-align: center;
-                }
-
-                &.right{
-                    &:after{
-                        content: '✓';
-                        color: #35b558;
-                    }
-                }
-
-                &.wrong{
-                    &:after{
-                        color: #ff5483;
-                        content: '✘';
-                    }
-                }
-
-                &.section_active a{
-                    color: #02b3e4;
-                }
-            }
-        }
-
-        .link{
-            font-weight: 600;
-            text-decoration: none;
-            color: #333;
-        }
-    }
-}
-
-.section-contain{
-    display: inline-block;
-    vertical-align: top;
-    width: 720px;
-    padding-left: 20px;
-
-    h4{
-        margin: 0 0 20px 0;
-        padding: 0;
-        font-size: 22px;
-        color: #333;
-    }
-
-    .text-content{
-        font-size: 14px;
-        line-height: 1.5;
-        color: #333;
-        text-align: justify;
-    }
-}
-
 </style>
