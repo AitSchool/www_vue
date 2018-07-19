@@ -10,7 +10,7 @@
                 <div class="course-detail-infomation">
                     <h2 class="title">{{course.name}} - {{course.short_name}}</h2>
                     <p class="description">{{course.description}}</p>
-                    <div class="price" v-if="!can_learn">¥ {{course.price}}</div>
+                    <div class="price" v-if="false">¥ {{course.price}}</div>
                     <div class="course-detail-action" v-if="false">
                         <div class="course-detail-btn">
                             <a v-if="!can_learn" href="javascript:;" class="course-detail-btn goPay">立即报名</a>
@@ -205,9 +205,9 @@ export default {
                 width: 125px;
                 height: 40px;
                 border-radius: 4px;
-                background: #02b3e4;
+                background: #2789d9;
                 color: #fff;
-                border: 1px solid #02b3e4;
+                border: 1px solid #2789d9;
                 font-size: 18px;
                 line-height: 38px;
                 transition: all .2s ease;
@@ -215,7 +215,7 @@ export default {
 
                 &:hover{
                     background: #fff;
-                    color: #02b3e4;
+                    color: #2789d9;
                 }
             }
         }
@@ -244,7 +244,7 @@ export default {
         border-bottom: 0;
 
         .title{
-            border-left: 2px solid #02b3e4;
+            border-left: 2px solid #2789d9;
             font-size: 16px;
             color: #333;
             font-weight: 500;
@@ -259,7 +259,7 @@ export default {
             font-size: 12px;
             line-height: 20px;
             min-height: 40px;
-            margin: 0 30px;
+            margin: 0 30px 15px;
         }
     }
 
@@ -292,7 +292,7 @@ export default {
                 background: #f1f1f1;
 
                 a{
-                    color: #02b3e4;
+                    color: #2789d9;
                 }
             }
         }
@@ -302,7 +302,7 @@ export default {
             font-size: 13px;
             font-weight: 600;
             text-decoration: none;
-            color: #02b3e4;
+            color: #2789d9;
             letter-spacing: 1px;
         }
     }
@@ -332,7 +332,7 @@ export default {
             font-size: 13px;
             font-weight: 600;
             text-decoration: none;
-            color: #02b3e4;
+            color: #2789d9;
             letter-spacing: 1px;
         }
 

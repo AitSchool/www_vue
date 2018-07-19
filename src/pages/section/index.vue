@@ -198,9 +198,23 @@ export default {
 
     .sidebar{
         width: 20rem;
-        box-sizing: border-box;
         overflow-y: auto;
         border-right: 1px solid #e4e4e4;
+
+        &::-webkit-scrollbar {
+          width: 2px;
+        }
+
+        &::-webkit-scrollbar-track {
+          border-radius: 1px;
+          background: #e4e4e4;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          border-radius: 4px;
+          background: #7d97ad;
+
+        }
 
         .sidebar-heading{
             line-height: 50px;
@@ -257,6 +271,9 @@ export default {
     }
     .mainer{
         overflow-y: auto;
+        &::-webkit-scrollbar {
+          width: 0;
+        }
         .content{
             max-width: 750px;
             margin: 0 auto;
