@@ -45,13 +45,17 @@
         border-radius: 6px;
         white-space: pre-wrap;
         word-break: break-word;
+        transition: all .2s ease;
+        box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
+        &:hover{
+          box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+        }
     }
 
     code{
         word-break: break-all;
         line-height: 18px;
         font-family: Menlo,Monaco,Consolas,Courier New,monospace;
-        background: #f8f8f8;
         padding: 0.5em;
     }
 
@@ -81,5 +85,14 @@
         margin: 10px 0;
         list-style-type: disc;
         padding-left: 20px;
+    }
+
+    img{
+      border-radius: 5px;
+      box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
+      transition: all .2s ease;
+      &:hover{
+        box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+      }
     }
 }
