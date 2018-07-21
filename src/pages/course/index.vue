@@ -50,7 +50,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="task-section">
+                <div class="task-section" v-if="course.tasks.length">
                     <p class="title">实战训练</p>
                     <div class="task-container">
                         <p class="task-item link" v-if="!can_learn" v-for="task in course.tasks">{{task.name}}</p>
@@ -271,9 +271,9 @@ export default {
             padding: 0 30px;
             height: 40px;
             line-height: 40px;
-            background: #f5f5f5;
+            background: #eff1f3;
             font-size: 14px;
-            color: #666;
+            color: #7d97ad;
         }
 
         .section-item,.homeworks-item{
@@ -289,7 +289,7 @@ export default {
             }
 
             &:hover{
-                background: #f1f1f1;
+                background: #f8f9fb;
 
                 a{
                     color: #2789d9;
